@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Goals</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="text_button_1">Мяу</string>
+    <string name="text_button_2">МяуМяу</string>
+    <string name="text_button_3">Кусь</string>
+    <string name="button_1">Mew</string>
+    <string name="button_2">MewMew</string>
+    <string name="button_3">Kus</string>
 </resources>
