@@ -19,7 +19,7 @@
             android:id="@+id/message"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
-            android:text="THIS IS MEWMEEEW!!!!" />
+            android:text="THIS IS MEEW!!!!" />
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView

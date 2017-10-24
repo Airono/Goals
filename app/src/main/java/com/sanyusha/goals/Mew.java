@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class Mew extends AppCompatActivity {
 
     private TextView mTextMessage;
 
@@ -20,11 +20,11 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.action_item1:
-                    Intent intent = new Intent(getApplicationContext(), Mew.class);
-                    startActivity(intent);
+                    mTextMessage.setText("We already in Mew");
                     return true;
                 case R.id.action_item2:
-                    mTextMessage.setText("We already in MewMew");
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
                     return true;
                 case R.id.action_item3:
                     intent = new Intent(getApplicationContext(), Kus.class);
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_mew);
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
