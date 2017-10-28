@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_item1"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/goals_button"
         android:title="@string/button_1"/>
     <item
         android:id="@+id/action_item2"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/add_button"
         android:title="@string/button_2"/>
     <item
         android:id="@+id/action_item3"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/setting_button"
         android:title="@string/button_3"/>
 </menu>

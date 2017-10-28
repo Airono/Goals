@@ -20,11 +20,11 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.action_item1:
-                    Intent intent = new Intent(getApplicationContext(), Mew.class);
-                    startActivity(intent);
+                    mTextMessage.setText("We already in Goals");
                     return true;
                 case R.id.action_item2:
-                    mTextMessage.setText("We already in MewMew");
+                    Intent intent = new Intent(getApplicationContext(), Mew.class);
+                    startActivity(intent);
                     return true;
                 case R.id.action_item3:
                     intent = new Intent(getApplicationContext(), Kus.class);

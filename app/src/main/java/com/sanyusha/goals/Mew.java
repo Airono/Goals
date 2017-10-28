@@ -20,11 +20,11 @@ public class Mew extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.action_item1:
-                    mTextMessage.setText("We already in Mew");
-                    return true;
-                case R.id.action_item2:
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
+                    return true;
+                case R.id.action_item2:
+                    mTextMessage.setText("We already in Mew");
                     return true;
                 case R.id.action_item3:
                     intent = new Intent(getApplicationContext(), Kus.class);
