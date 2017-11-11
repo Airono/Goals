@@ -8,8 +8,9 @@
     android:layout_height="match_parent"
     tools:context="com.sanyusha.goals.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/frame_layout"
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/navigation"
@@ -20,7 +21,19 @@
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:text="THIS IS MEWMEEEW!!!!" />
-    </FrameLayout>
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/load_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Load" />
+    </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
