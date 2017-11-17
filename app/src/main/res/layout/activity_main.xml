@@ -22,17 +22,11 @@
             android:layout_height="wrap_content"
             android:text="THIS IS MEWMEEEW!!!!" />
 
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Save" />
-
-        <Button
-            android:id="@+id/load_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Load" />
+        <ListView
+            android:id="@+id/MewMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
     </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView

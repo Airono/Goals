@@ -7,16 +7,20 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity  {
 
     private TextView mTextMessage;
-    private SharedPreferences sPref;
-    Button saveButton, loadButton;
+
+    String[] mews = { "Mew", "MewMew", "MewMewMew"};
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -42,19 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     };
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.save_button:
-                saveText("12", "mewmew");
-                break;
-            case R.id.load_button:
-                mTextMessage.setText(loadText("12"));
-                break;
-            default:
-                break;
-        }
-    }
 
 
     @Override
@@ -62,30 +53,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ListView MewMain = (ListView) findViewById(R.id.MewMain);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.my_list_item, mews);
+        MewMain.setAdapter(adapter);
+
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        saveButton = (Button) findViewById(R.id.save_button);
-        saveButton.setOnClickListener(this);
-
-        loadButton = (Button) findViewById(R.id.load_button);
-        loadButton.setOnClickListener(this);
     }
-
-    void saveText(String key, String savedText) {
-        sPref = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor ed = sPref.edit();
-        ed.putString(key, savedText);
-        ed.apply();
-        Toast.makeText(this, "Text saved", Toast.LENGTH_SHORT).show();
-    }
-
-    String loadText(String key) {
-        sPref = getPreferences(MODE_PRIVATE);
-        String savedText = sPref.getString(key, "");
-        Toast.makeText(this, "Text loaded", Toast.LENGTH_SHORT).show();
-        return savedText;
-    }
-
 }
