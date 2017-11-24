@@ -9,14 +9,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Mew extends AppCompatActivity implements View.OnClickListener{
 
     private TextView mTextMessage;
+    private EditText editText2;
     private SharedPreferences sPref;
     Button saveButton, loadButton;
+    final String SAVED_TEXT = "saved_text";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -47,6 +50,8 @@ public class Mew extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mew);
 
+        editText2 = (EditText) findViewById(R.id.editText2);
+
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -62,10 +67,10 @@ public class Mew extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.save_button:
-                saveText("12", "mewmew");
+                saveText();
                 break;
             case R.id.load_button:
-                mTextMessage.setText(loadText("12"));
+                mTextMessage.setText(loadText());
                 break;
             default:
                 break;
@@ -73,17 +78,20 @@ public class Mew extends AppCompatActivity implements View.OnClickListener{
     }
 
 
-    void saveText(String key, String savedText) {
+    void saveText() {
         sPref = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor ed = sPref.edit();
-        ed.putString(key, savedText);
+        ed.putString(SAVED_TEXT, editText2.getText().toString());
+        ed.commit();
+
         ed.apply();
         Toast.makeText(this, "Text saved", Toast.LENGTH_SHORT).show();
     }
 
-    String loadText(String key) {
+    String loadText() {
         sPref = getPreferences(MODE_PRIVATE);
-        String savedText = sPref.getString(key, "");
+        String savedText = sPref.getString(SAVED_TEXT, "");
+        editText2.setText(savedText);
         Toast.makeText(this, "Text loaded", Toast.LENGTH_SHORT).show();
         return savedText;
     }
