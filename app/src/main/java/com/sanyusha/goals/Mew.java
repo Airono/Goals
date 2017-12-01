@@ -61,6 +61,7 @@ public class Mew extends AppCompatActivity implements View.OnClickListener{
 
         loadButton = (Button) findViewById(R.id.load_button);
         loadButton.setOnClickListener(this);
+
     }
 
     @Override

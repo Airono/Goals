@@ -9,7 +9,7 @@
     tools:context="com.sanyusha.goals.MainActivity">
 
     <RelativeLayout
-        android:id="@+id/linear_layout"
+        android:id="@+id/relative_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,10 +39,10 @@
             android:id="@+id/load_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Load"
             android:layout_alignBaseline="@+id/save_button"
             android:layout_alignBottom="@+id/save_button"
-            android:layout_toEndOf="@+id/message" />
+            android:layout_toEndOf="@+id/message"
+            android:text="Load" />
 
     </RelativeLayout>
 

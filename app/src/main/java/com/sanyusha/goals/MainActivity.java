@@ -6,21 +6,22 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity  {
 
     private TextView mTextMessage;
-
-    String[] mews = { "Mew", "MewMew", "MewMewMew"};
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -53,9 +54,24 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView MewMain = (ListView) findViewById(R.id.MewMain);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.my_list_item, mews);
-        MewMain.setAdapter(adapter);
+        ListView listView = (ListView) findViewById(R.id.listView);
+        final EditText editText = (EditText) findViewById(R.id.editText);
+
+        final ArrayList<String> goals= new ArrayList<>();
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.my_list_item, goals);
+        listView.setAdapter(adapter);
+
+        Button button = (Button) findViewById(R.id.button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goals.add(0, editText.getText().toString());
+                adapter.notifyDataSetChanged();
+                editText.setText("");
+            }
+        });
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
