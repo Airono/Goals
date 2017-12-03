@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Mew extends AppCompatActivity implements View.OnClickListener{
+public class NewGoalActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView mTextMessage;
     private EditText editText2;
@@ -29,14 +29,14 @@ public class Mew extends AppCompatActivity implements View.OnClickListener{
 
             switch (item.getItemId()) {
                 case R.id.action_item1:
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), GoalListActivity.class);
                     startActivity(intent);
                     return true;
                 case R.id.action_item2:
                     mTextMessage.setText("We already in Mew");
                     return true;
                 case R.id.action_item3:
-                    intent = new Intent(getApplicationContext(), Kus.class);
+                    intent = new Intent(getApplicationContext(), SettingActiivity.class);
                     startActivity(intent);
                     return true;
             }
@@ -48,7 +48,7 @@ public class Mew extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mew);
+        setContentView(R.layout.activity_new_goal);
 
         editText2 = (EditText) findViewById(R.id.editText2);
 
@@ -83,8 +83,6 @@ public class Mew extends AppCompatActivity implements View.OnClickListener{
         sPref = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor ed = sPref.edit();
         ed.putString(SAVED_TEXT, editText2.getText().toString());
-        ed.commit();
-
         ed.apply();
         Toast.makeText(this, "Text saved", Toast.LENGTH_SHORT).show();
     }

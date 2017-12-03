@@ -8,9 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class Kus extends AppCompatActivity {
+public class SettingActiivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -20,15 +19,14 @@ public class Kus extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.action_item1:
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), GoalListActivity.class);
                     startActivity(intent);
                     return true;
                 case R.id.action_item2:
-                    intent = new Intent(getApplicationContext(), Mew.class);
+                    intent = new Intent(getApplicationContext(), NewGoalActivity.class);
                     startActivity(intent);
                     return true;
                 case R.id.action_item3:
-                    mTextMessage.setText("We already in Kus");
                     return true;
             }
             return false;
@@ -39,8 +37,7 @@ public class Kus extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kus);
-        mTextMessage = (TextView) findViewById(R.id.message);
+        setContentView(R.layout.activity_setting);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
