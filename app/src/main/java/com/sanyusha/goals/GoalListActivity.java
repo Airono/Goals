@@ -1,7 +1,9 @@
 package com.sanyusha.goals;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -10,12 +12,14 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import java.util.ArrayList;
 
 public class GoalListActivity extends AppCompatActivity  {
+
+    ArrayList<String> goals;
+    ListView listView;
+    ArrayAdapter<String> adapter;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -47,26 +51,46 @@ public class GoalListActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_list);
 
-        ListView listView = (ListView) findViewById(R.id.listView);
-        final EditText editText = (EditText) findViewById(R.id.editText);
+        listView = (ListView) findViewById(R.id.listView);
+        goals = new ArrayList<>();
 
-        final ArrayList<String> goals= new ArrayList<>();
+        adapter = new ArrayAdapter<>(this, R.layout.my_list_item, goals);
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.my_list_item, goals);
         listView.setAdapter(adapter);
-
         Button button = (Button) findViewById(R.id.button);
 
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                goals.add(0, editText.getText().toString());
-                adapter.notifyDataSetChanged();
-                editText.setText("");
+                cleanList();
             }
         });
 
+
+        updateList();
+
+
+
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    void updateList() {
+        // update list
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        for (String key : sharedPreferences.getAll().keySet()) {
+            //String title = sharedPreferences.getString(key, "");
+
+            goals.add(key);
+
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+    void cleanList() {
+        PreferenceManager.getDefaultSharedPreferences(this).edit().clear().apply();
+        goals.clear();
+        adapter.notifyDataSetChanged();
     }
 }

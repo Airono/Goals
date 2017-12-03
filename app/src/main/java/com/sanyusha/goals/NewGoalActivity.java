@@ -3,6 +3,7 @@ package com.sanyusha.goals;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -13,12 +14,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class NewGoalActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private TextView mTextMessage;
-    private EditText editText2;
+    private EditText titleText, descriptionText;
     private SharedPreferences sPref;
-    Button saveButton, loadButton;
+    Button saveButton, cancelButton;
     final String SAVED_TEXT = "saved_text";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -33,7 +36,6 @@ public class NewGoalActivity extends AppCompatActivity implements View.OnClickLi
                     startActivity(intent);
                     return true;
                 case R.id.action_item2:
-                    mTextMessage.setText("We already in Mew");
                     return true;
                 case R.id.action_item3:
                     intent = new Intent(getApplicationContext(), SettingActiivity.class);
@@ -50,17 +52,14 @@ public class NewGoalActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_goal);
 
-        editText2 = (EditText) findViewById(R.id.editText2);
-
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        titleText = (EditText) findViewById(R.id.titleText);
+        descriptionText = (EditText) findViewById(R.id.descriptionText);
 
         saveButton = (Button) findViewById(R.id.save_button);
         saveButton.setOnClickListener(this);
 
-        loadButton = (Button) findViewById(R.id.load_button);
-        loadButton.setOnClickListener(this);
+        cancelButton = (Button) findViewById(R.id.cancel_button);
+        cancelButton.setOnClickListener(this);
 
     }
 
@@ -69,9 +68,10 @@ public class NewGoalActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.save_button:
                 saveText();
+                backToGoalList();
                 break;
-            case R.id.load_button:
-                mTextMessage.setText(loadText());
+            case R.id.cancel_button:
+                backToGoalList();
                 break;
             default:
                 break;
@@ -79,19 +79,19 @@ public class NewGoalActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
+    void backToGoalList() {
+        Intent intent = new Intent(getApplicationContext(), GoalListActivity.class);
+        startActivity(intent);
+    }
+
+
     void saveText() {
-        sPref = getPreferences(MODE_PRIVATE);
+        sPref = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor ed = sPref.edit();
-        ed.putString(SAVED_TEXT, editText2.getText().toString());
+
+        ed.putString(titleText.getText().toString(), descriptionText.getText().toString());
         ed.apply();
         Toast.makeText(this, "Text saved", Toast.LENGTH_SHORT).show();
     }
 
-    String loadText() {
-        sPref = getPreferences(MODE_PRIVATE);
-        String savedText = sPref.getString(SAVED_TEXT, "");
-        editText2.setText(savedText);
-        Toast.makeText(this, "Text loaded", Toast.LENGTH_SHORT).show();
-        return savedText;
-    }
 }
