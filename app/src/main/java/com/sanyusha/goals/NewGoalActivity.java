@@ -22,7 +22,6 @@ public class NewGoalActivity extends AppCompatActivity implements View.OnClickLi
     private EditText titleText, descriptionText;
     private SharedPreferences sPref;
     Button saveButton, cancelButton;
-    final String SAVED_TEXT = "saved_text";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {

@@ -58,7 +58,7 @@ public class GoalListActivity extends AppCompatActivity  {
 
         listView.setAdapter(adapter);
         Button button = (Button) findViewById(R.id.button);
-
+        adapter.notifyDataSetChanged();
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,11 +66,7 @@ public class GoalListActivity extends AppCompatActivity  {
             }
         });
 
-
         updateList();
-
-
-
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -81,11 +77,9 @@ public class GoalListActivity extends AppCompatActivity  {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         for (String key : sharedPreferences.getAll().keySet()) {
             //String title = sharedPreferences.getString(key, "");
-
             goals.add(key);
-
+            adapter.notifyDataSetChanged();
         }
-        adapter.notifyDataSetChanged();
     }
 
     void cleanList() {
