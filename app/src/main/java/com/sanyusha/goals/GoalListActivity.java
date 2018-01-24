@@ -13,6 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.view.View;
 import android.widget.ListView;
+
+import com.vk.sdk.util.VKUtil;
+
 import java.util.ArrayList;
 
 public class GoalListActivity extends AppCompatActivity  {
@@ -21,6 +24,8 @@ public class GoalListActivity extends AppCompatActivity  {
     ListView listView;
     ArrayAdapter<String> adapter;
 
+    String[] fingerprints = VKUtil.getCertificateFingerprint(this, this.getPackageName());
+    console.log(fingerprints);
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -35,7 +40,7 @@ public class GoalListActivity extends AppCompatActivity  {
                     startActivity(intent);
                     return true;
                 case R.id.action_item3:
-                    intent = new Intent(getApplicationContext(), SettingActiivity.class);
+                    intent = new Intent(getApplicationContext(), SettingActivity.class);
                     startActivity(intent);
                     return true;
             }

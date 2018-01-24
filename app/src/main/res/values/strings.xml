@@ -6,4 +6,5 @@
     <string name="button_1">Цели</string>
     <string name="button_2">Добавить</string>
     <string name="button_3">Настройки</string>
+    <integer name="com_vk_sdk_AppId">6307003</integer>
 </resources>

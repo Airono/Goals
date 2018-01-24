@@ -11,11 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class NewGoalActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -37,7 +33,7 @@ public class NewGoalActivity extends AppCompatActivity implements View.OnClickLi
                 case R.id.action_item2:
                     return true;
                 case R.id.action_item3:
-                    intent = new Intent(getApplicationContext(), SettingActiivity.class);
+                    intent = new Intent(getApplicationContext(), SettingActivity.class);
                     startActivity(intent);
                     return true;
             }
