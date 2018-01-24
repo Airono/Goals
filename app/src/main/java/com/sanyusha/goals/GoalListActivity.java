@@ -8,11 +8,12 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View.OnClickListener;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.vk.sdk.util.VKUtil;
 
@@ -24,8 +25,6 @@ public class GoalListActivity extends AppCompatActivity  {
     ListView listView;
     ArrayAdapter<String> adapter;
 
-    String[] fingerprints = VKUtil.getCertificateFingerprint(this, this.getPackageName());
-    console.log(fingerprints);
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -64,7 +63,7 @@ public class GoalListActivity extends AppCompatActivity  {
         listView.setAdapter(adapter);
         Button button = (Button) findViewById(R.id.button);
         adapter.notifyDataSetChanged();
-        button.setOnClickListener(new OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cleanList();
