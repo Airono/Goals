@@ -76,6 +76,7 @@ public class NewGoalActivity extends AppCompatActivity implements View.OnClickLi
 
     void backToGoalList() {
         Intent intent = new Intent(getApplicationContext(), GoalListActivity.class);
+
         startActivity(intent);
     }
 

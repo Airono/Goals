@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#0D80EE</color>
     <color name="colorAccent">#0000CD</color>
     <color name="nav_item_state_list">#FFFFFF</color>
+    <color name="buttonTextColor">#ffffff</color>
 </resources>
