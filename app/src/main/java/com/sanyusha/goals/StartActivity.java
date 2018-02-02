@@ -68,7 +68,7 @@ public class StartActivity extends Activity {
 
     public void authorizationButton(View v) {
         VKSdk.authorize(sMyScope, true, false);
-        Log.d("test", VKSdk.getAccessToken().emai);
+        Log.d("test", VKSdk.getAccessToken().email);
     }
 
 }

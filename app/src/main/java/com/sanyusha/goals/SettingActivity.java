@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import retrofit2.Retrofit;
+
 public class SettingActivity extends AppCompatActivity {
 
 
@@ -43,7 +45,6 @@ public class SettingActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         Log.d("test", "privet");
     }
-
 
     public void settingButton(View v) {
         Log.d("test", "privet");
