@@ -1,14 +1,31 @@
 package com.sanyusha.goals;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Александра on 09.12.2017.
  */
 
 public class Goal {
+    @SerializedName("title")
+    @Expose
     private String title;
+
+    @SerializedName("description")
+    @Expose
     private String description;
+
+    @SerializedName("type")
+    @Expose
     private String type;
+
+    @SerializedName("date")
+    @Expose
     private int date;
+
+    @SerializedName("tId")
+    @Expose
     private int tId;
 
     public Goal(String title, String description, String type, int date, int tId) {

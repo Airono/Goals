@@ -37,6 +37,11 @@ public class StartActivity extends Activity {
             public void onResult(VKAccessToken res) {
                 // User passed Authorization
                 Log.d("test", res.accessToken);
+                Log.d("test", res.userId);
+                GoalsApi api = new GoalsApi();
+                //api.getTargets(res.userId, res.accessToken);
+                Goal testGoal = new Goal("title", "description", "week", 142543532, 567);
+                api.postTargets(res.userId, res.accessToken, testGoal);
             }
 
             @Override
