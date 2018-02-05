@@ -40,7 +40,7 @@ public class StartActivity extends Activity {
                 Log.d("test", res.userId);
                 GoalsApi api = new GoalsApi();
                 //api.getTargets(res.userId, res.accessToken);
-                Goal testGoal = new Goal("title", "description", "week", 142543532, 567);
+                Goal testGoal = new Goal("ooooo", "dddddd", "week", 140140140, 599);
                 api.postTargets(res.userId, res.accessToken, testGoal);
             }
 

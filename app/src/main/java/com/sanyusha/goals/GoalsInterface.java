@@ -2,6 +2,7 @@ package com.sanyusha.goals;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Body;
@@ -19,12 +20,12 @@ public interface GoalsInterface {
     Call<List<Goal>> getTargets(@Query("uId") String uId, @Query("token") String token);
 
     @POST("/target/new")
-    Call<Response<String>> postTargets(@Field("uId") String id,
-                                       @Field("token") String token,
-                                       @Field("tId") Integer tId,
-                                       @Field("title") String title,
-                                       @Field("description") String description,
-                                       @Field("type") String type,
-                                       @Field("date") Integer date
+    Call<ResponseBody> postTargets(@Query("uId") String id,
+                                   @Query("token") String token,
+                                   @Query("tId") Integer tId,
+                                   @Query("title") String title,
+                                   @Query("description") String description,
+                                   @Query("type") String type,
+                                   @Query("date") Integer date
                                        );
 }
