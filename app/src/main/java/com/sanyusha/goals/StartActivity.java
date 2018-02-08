@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKScope;
@@ -25,9 +27,6 @@ public class StartActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         Log.d("test", "poka");
-
-        VKSdk.login(this, sMyScope);
-
     }
 
     @Override
@@ -35,13 +34,17 @@ public class StartActivity extends Activity {
         VKCallback<VKAccessToken> callback = new VKCallback<VKAccessToken>() {
             @Override
             public void onResult(VKAccessToken res) {
+
+                Intent intent = new Intent(getApplicationContext(), GoalListActivity.class);
+                startActivity(intent);
+
                 // User passed Authorization
-                Log.d("test", res.accessToken);
-                Log.d("test", res.userId);
-                GoalsApi api = new GoalsApi();
+                //Log.d("test", res.accessToken);
+                //Log.d("test", res.userId);
+                //GoalsApi api = new GoalsApi();
                 //api.getTargets(res.userId, res.accessToken);
-                Goal testGoal = new Goal("ooooo", "dddddd", "week", 140140140, 599);
-                api.postTargets(res.userId, res.accessToken, testGoal);
+                //Goal testGoal = new Goal("ooooo", "dddddd", "week", 140140140, 599);
+                //api.postTargets(res.userId, res.accessToken, testGoal);
             }
 
             @Override
@@ -56,7 +59,7 @@ public class StartActivity extends Activity {
     }
 
     public void authorizationButton(View v) {
-
+        VKSdk.login(this, sMyScope);
     }
 
 }
