@@ -1,8 +1,11 @@
 package com.sanyusha.goals;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +24,7 @@ public class StartActivity extends Activity {
 
     private static String sTokenKey = "VK_ACCESS_TOKEN";
     private static String[] sMyScope = new String[]{VKScope.GROUPS};
+    private SharedPreferences sPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +45,14 @@ public class StartActivity extends Activity {
                 // User passed Authorization
                 //Log.d("test", res.accessToken);
                 //Log.d("test", res.userId);
-                //GoalsApi api = new GoalsApi();
-                //api.getTargets(res.userId, res.accessToken);
-                //Goal testGoal = new Goal("ooooo", "dddddd", "week", 140140140, 599);
-                //api.postTargets(res.userId, res.accessToken, testGoal);
+
+                //sPref = getPreferences(MODE_PRIVATE);
+                sPref = getSharedPreferences("vk", MODE_PRIVATE);
+                SharedPreferences.Editor ed = sPref.edit();
+                ed.putString("access_token", res.accessToken);
+                ed.putString("user_id", res.userId);
+                ed.apply();
+
             }
 
             @Override

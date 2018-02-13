@@ -1,4 +1,4 @@
-package com.sanyusha.goals;
+package com.sanyusha.goals.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -1,29 +1,31 @@
 package com.sanyusha.goals;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.vk.sdk.util.VKUtil;
+import com.sanyusha.goals.models.Goal;
+import com.sanyusha.goals.network.GoalsBuilder;
 
 import java.util.ArrayList;
 
-public class GoalListActivity extends AppCompatActivity  {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-    ArrayList<String> goals;
-    ListView listView;
-    ArrayAdapter<String> adapter;
+
+public class GoalListActivity extends Activity {
+
+    ArrayList<Goal> goals = new ArrayList<>();
+    GoalsAdapter mAdapter;
+    ListView lstTask;
+    private SharedPreferences sPref;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -55,40 +57,41 @@ public class GoalListActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_list);
 
-        listView = (ListView) findViewById(R.id.listView);
-        goals = new ArrayList<>();
+        lstTask = (ListView) findViewById(R.id.lstTask);
 
-        adapter = new ArrayAdapter<>(this, R.layout.my_list_item, goals);
-
-        listView.setAdapter(adapter);
-        Button button = (Button) findViewById(R.id.button);
-        adapter.notifyDataSetChanged();
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cleanList();
-            }
-        });
-
-        updateList();
+        loadTaskList();
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
-    void updateList() {
-        // update list
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        for (String key : sharedPreferences.getAll().keySet()) {
-            //String title = sharedPreferences.getString(key, "");
-            goals.add(key);
-            adapter.notifyDataSetChanged();
-        }
+
+    private void loadTaskList() {
+
+        sPref = getSharedPreferences("vk", MODE_PRIVATE);
+        String userId = sPref.getString("user_id", "");
+        String accessToken = sPref.getString("access_token", "");
+
+        final Activity activity = this;
+        Call<ArrayList<Goal>> call = GoalsBuilder.getApi().getTargets(userId, accessToken);
+        call.enqueue(new Callback<ArrayList<Goal>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Goal>> call, Response<ArrayList<Goal>> response) {
+                if (response.isSuccessful()) {
+                    Log.d("test", "success");
+                    goals = response.body();
+                    mAdapter = new GoalsAdapter(activity, goals);
+                    lstTask.setAdapter(mAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Goal>> call, Throwable throwable) {
+                Log.d("test", "failure");
+                Log.d("test", call.request().url().toString());
+            }
+        });
+
     }
 
-    void cleanList() {
-        PreferenceManager.getDefaultSharedPreferences(this).edit().clear().apply();
-        goals.clear();
-        adapter.notifyDataSetChanged();
-    }
 }

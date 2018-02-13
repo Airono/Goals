@@ -1,4 +1,4 @@
-package com.sanyusha.goals;
+package com.sanyusha.goals.network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
