@@ -1,4 +1,4 @@
-package com.sanyusha.goals;
+package com.sanyusha.goals.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.sanyusha.goals.adapters.GoalsAdapter;
+import com.sanyusha.goals.R;
 import com.sanyusha.goals.models.Goal;
 import com.sanyusha.goals.network.GoalsBuilder;
 

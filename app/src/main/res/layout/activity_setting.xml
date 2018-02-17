@@ -14,15 +14,6 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/navigation"
         android:animateLayoutChanges="true">
-
-        <Button
-            android:id="@+id/authorization_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="VK authorization"
-            android:onClick="settingButton"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
     <android.support.design.widget.BottomNavigationView

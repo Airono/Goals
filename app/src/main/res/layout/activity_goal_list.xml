@@ -8,46 +8,30 @@
     android:layout_height="match_parent"
     tools:context="com.sanyusha.goals.activities.GoalListActivity">
 
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/relative_layout"-->
-        <!--android:orientation="vertical"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:animateLayoutChanges="true"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_alignParentStart="true">-->
-
-        <!--<ListView-->
-            <!--android:id="@+id/listView"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_marginTop="106dp" />-->
-
-
-    <ListView
-        android:id="@+id/lstTask"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        app:itemIconTint="@color/nav_item_state_list"
-        app:itemTextColor="@color/nav_item_state_list"
-        app:menu="@menu/bottom_navigation_items"/>
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
-    <!--<Button-->
-        <!--android:id="@+id/button"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="83dp"-->
-        <!--android:text="JUST DO IT"-->
-        <!--android:textAppearance="@style/TextAppearance.Design.CollapsingToolbar.Expanded"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_alignParentStart="true" />-->
+        <ListView
+            android:id="@+id/lstTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimary"
+            app:itemIconTint="@color/nav_item_state_list"
+            app:itemTextColor="@color/nav_item_state_list"
+            app:menu="@menu/bottom_navigation_items"/>
+
+    </RelativeLayout>
+
 </RelativeLayout>

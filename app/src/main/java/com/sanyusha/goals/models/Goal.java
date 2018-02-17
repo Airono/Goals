@@ -22,13 +22,13 @@ public class Goal {
 
     @SerializedName("date")
     @Expose
-    private int date;
+    private long date;
 
     @SerializedName("tId")
     @Expose
     private int tId;
 
-    public Goal(String title, String description, String type, int date, int tId) {
+    public Goal(String title, String description, String type, long date, int tId) {
         this.title = title;
         this.description = description;
         this.date = date;
@@ -60,11 +60,11 @@ public class Goal {
         this.type = type;
     }
 
-    public int getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(long date) {
         this.date = date;
     }
 

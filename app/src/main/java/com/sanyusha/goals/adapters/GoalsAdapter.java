@@ -1,4 +1,4 @@
-package com.sanyusha.goals;
+package com.sanyusha.goals.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.sanyusha.goals.R;
 import com.sanyusha.goals.models.Goal;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class GoalsAdapter extends BaseAdapter {
     LayoutInflater lInflater;
     ArrayList<Goal> objects;
 
-    GoalsAdapter(Context context, ArrayList<Goal> goals) {
+    public GoalsAdapter(Context context, ArrayList<Goal> goals) {
         ctx = context;
         objects = goals;
         lInflater = (LayoutInflater) ctx

@@ -1,4 +1,4 @@
-package com.sanyusha.goals;
+package com.sanyusha.goals.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 
-import retrofit2.Retrofit;
+import com.sanyusha.goals.R;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -43,10 +42,6 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        Log.d("test", "privet");
-    }
-
-    public void settingButton(View v) {
         Log.d("test", "privet");
     }
 }

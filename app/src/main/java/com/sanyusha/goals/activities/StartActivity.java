@@ -1,4 +1,4 @@
-package com.sanyusha.goals;
+package com.sanyusha.goals.activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.sanyusha.goals.R;
+import com.sanyusha.goals.activities.GoalListActivity;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKScope;
@@ -30,7 +32,7 @@ public class StartActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        Log.d("test", "poka");
+        Log.d("test", "poка");
     }
 
     @Override
@@ -43,8 +45,8 @@ public class StartActivity extends Activity {
                 startActivity(intent);
 
                 // User passed Authorization
-                //Log.d("test", res.accessToken);
-                //Log.d("test", res.userId);
+                Log.d("test", res.accessToken);
+                Log.d("test", res.userId);
 
                 //sPref = getPreferences(MODE_PRIVATE);
                 sPref = getSharedPreferences("vk", MODE_PRIVATE);
