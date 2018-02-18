@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 
 public class GoalsAdapter extends BaseAdapter {
-    Context ctx;
+    public Context ctx;
     LayoutInflater lInflater;
     ArrayList<Goal> objects;
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_1">Цели</string>
+    <string name="button_2">Добавить</string>
+    <string name="button_3">Настройки</string>
+    <string name="life">Жизнь</string>
+    <string name="month">Месяц</string>
+    <string name="week">Неделя</string>
+    <string name="year">Год</string>
+</resources>

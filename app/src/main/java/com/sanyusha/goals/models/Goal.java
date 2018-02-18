@@ -2,12 +2,23 @@ package com.sanyusha.goals.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.sanyusha.goals.R;
+
+import static android.R.attr.name;
 
 /**
  * Created by Александра on 09.12.2017.
  */
 
 public class Goal {
+
+    public enum Type {
+        week,
+        month,
+        year,
+        life;
+    }
+
     @SerializedName("title")
     @Expose
     private String title;

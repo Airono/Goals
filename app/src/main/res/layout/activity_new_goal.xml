@@ -18,7 +18,7 @@
         <Button
             android:id="@+id/save_button"
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="98dp"
@@ -27,13 +27,11 @@
 
         <Button
             android:id="@+id/cancel_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/save_button"
-            android:layout_alignBottom="@+id/save_button"
-            android:layout_marginEnd="64dp"
-            android:layout_toStartOf="@+id/save_button"
-            android:text="Cancel" />
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Cancel"
+            android:layout_alignStart="@+id/typeSpinner"
+            android:layout_alignBottom="@+id/save_button" />
 
         <EditText
             android:id="@+id/titleText"
