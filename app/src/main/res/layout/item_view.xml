@@ -1,17 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:d="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
 
+
+    <View
+        android:id="@+id/typeView"
+        android:layout_width="10dp"
+        android:layout_height="77dp"
+        android:layout_weight="1"
+
+        android:background="@color/colorPrimaryDark"
+        tools:layout_conversion_absoluteHeight="93dp"
+        tools:layout_conversion_absoluteWidth="10dp"
+        tools:layout_conversion_absoluteX="0dp"
+        tools:layout_conversion_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_width="358dp"
+        android:layout_height="77dp"
+        android:orientation="vertical"
+        tools:layout_conversion_absoluteX="15dp"
+        tools:layout_conversion_absoluteY="0dp"
+        tools:layout_conversion_absoluteWidth="369dp"
+        tools:layout_conversion_absoluteHeight="93dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="18dp">
+
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -19,21 +40,21 @@
             android:layout_marginTop="5dp"
             android:layout_marginLeft="15dp"
             android:text="ergrege"
-            android:textSize="20sp">
-        </TextView>
+            android:textSize="20sp"></TextView>
+
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="10dp"
-            android:text="rehreh">
-        </TextView>
+            android:text="rehreh"></TextView>
+
     </LinearLayout>
     <!--<ImageView-->
-        <!--android:id="@+id/ivImage"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:src="@drawable/ic_launcher">-->
+    <!--android:id="@+id/ivImage"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@drawable/ic_launcher">-->
     <!--</ImageView>-->
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

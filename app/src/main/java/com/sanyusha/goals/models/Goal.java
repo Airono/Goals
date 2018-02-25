@@ -1,10 +1,10 @@
 package com.sanyusha.goals.models;
 
+import android.util.Log;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.sanyusha.goals.R;
-
-import static android.R.attr.name;
 
 /**
  * Created by Александра on 09.12.2017.
@@ -16,7 +16,25 @@ public class Goal {
         week,
         month,
         year,
-        life;
+        life,
+        unknown;
+
+        int color;
+
+        public int getColor() {
+            switch(this) {
+                case week:
+                    return R.color.weekColor;
+                case month:
+                    return R.color.monthColor;
+                case year:
+                    return R.color.yearColor;
+                case life:
+                    return R.color.lifeColor;
+                default:
+                    return R.color.unknownColor;
+            }
+        }
     }
 
     @SerializedName("title")
@@ -63,8 +81,13 @@ public class Goal {
         this.description = description;
     }
 
-    public String getType() {
-        return type;
+    public Type getType() {
+        try {
+            return Type.valueOf(type);
+        }
+        catch(IllegalArgumentException e) {
+            return Type.unknown;
+        }
     }
 
     public void setType(String type) {

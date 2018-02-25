@@ -1,6 +1,9 @@
 package com.sanyusha.goals.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +63,7 @@ public class GoalsAdapter extends BaseAdapter {
 
         ((TextView) view.findViewById(R.id.title)).setText(p.getTitle());
         ((TextView) view.findViewById(R.id.description)).setText(p.getDescription());
+        view.findViewById(R.id.typeView).setBackgroundColor(ContextCompat.getColor(ctx, p.getType().getColor()));
 
         return view;
     }

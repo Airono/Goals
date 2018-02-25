@@ -15,7 +15,8 @@
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        tools:ignore="UselessParent">
 
         <ListView
             android:id="@+id/lstTask"

@@ -5,4 +5,9 @@
     <color name="colorAccent">#2A498A</color>
     <color name="nav_item_state_list">#FFFFFF</color>
     <color name="buttonTextColor">#ffffff</color>
+    <color name="weekColor">#21accc</color>
+    <color name="monthColor">#fca203</color>
+    <color name="yearColor">#62ba04</color>
+    <color name="lifeColor">#cc23bc</color>
+    <color name="unknownColor">#888888</color>
 </resources>
