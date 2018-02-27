@@ -27,6 +27,7 @@ public class SettingActivity extends AppCompatActivity {
                 case R.id.action_item2:
                     intent = new Intent(getApplicationContext(), NewGoalActivity.class);
                     startActivity(intent);
+                    Log.d("test", "move to NewGoal");
                     return true;
                 case R.id.action_item3:
                     return true;
@@ -40,8 +41,10 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
         Log.d("test", "privet");
     }
 }

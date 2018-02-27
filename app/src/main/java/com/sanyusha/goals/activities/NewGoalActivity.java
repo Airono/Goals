@@ -33,53 +33,33 @@ import retrofit2.Response;
 public class NewGoalActivity extends Activity implements View.OnClickListener{
 
     private EditText titleText, descriptionText;
-    private SharedPreferences sPref;
     Button saveButton, cancelButton;
-    ArrayList<String> types = new ArrayList<String>();
+    ArrayList<String> types = new ArrayList<>();
     String typeText;
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-            switch (item.getItemId()) {
-                case R.id.action_item1:
-                    Intent intent = new Intent(getApplicationContext(), GoalListActivity.class);
-                    startActivity(intent);
-                    return true;
-                case R.id.action_item2:
-                    return true;
-                case R.id.action_item3:
-                    intent = new Intent(getApplicationContext(), SettingActivity.class);
-                    startActivity(intent);
-                    return true;
-            }
-            return false;
-        }
-
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("test", "in NewGoal");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_goal);
+        Log.d("test", "in NewGoal2");
 
-        titleText = (EditText) findViewById(R.id.titleText);
-        descriptionText = (EditText) findViewById(R.id.descriptionText);
+        titleText = findViewById(R.id.titleText);
+        descriptionText = findViewById(R.id.descriptionText);
 
+        Log.d("test", "in NewGoal3");
         Resources res = getResources();
         for (Goal.Type type: Goal.Type.values()) {
             Integer resID = res.getIdentifier(type.name(), "string", getPackageName());
             String typeName = getString(resID);
             types.add(typeName);
+            Log.d("test", typeName);
         }
-
+        Log.d("test", "in NewGoal4");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, types);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        Spinner spinner = (Spinner) findViewById(R.id.typeSpinner);
+        Spinner spinner = findViewById(R.id.typeSpinner);
         spinner.setAdapter(adapter);
         spinner.setPrompt("Type");
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -92,13 +72,12 @@ public class NewGoalActivity extends Activity implements View.OnClickListener{
 
             }
         });
-
-        saveButton = (Button) findViewById(R.id.save_button);
+        Log.d("test", "in NewGoal5");
+        saveButton = findViewById(R.id.save_button);
         saveButton.setOnClickListener(this);
 
-        cancelButton = (Button) findViewById(R.id.cancel_button);
+        cancelButton = findViewById(R.id.cancel_button);
         cancelButton.setOnClickListener(this);
-
     }
 
     @Override
@@ -119,7 +98,6 @@ public class NewGoalActivity extends Activity implements View.OnClickListener{
 
     void backToGoalList() {
         Intent intent = new Intent(getApplicationContext(), GoalListActivity.class);
-
         startActivity(intent);
     }
 

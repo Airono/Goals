@@ -1,69 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/activity_main"
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sanyusha.goals.activities.NewGoalActivity">
+    tools:context="com.sanyusha.goals.activities.NewGoalActivity"
 
-    <RelativeLayout
-        android:id="@+id/relative_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
+    android:id="@+id/relative_layout"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="98dp"
+        android:layout_marginEnd="76dp"
+        android:text="@string/save" />
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/save_button"
+        android:layout_alignStart="@+id/typeSpinner"
+        android:text="@string/cancel" />
+
+    <EditText
+        android:id="@+id/titleText"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:layout_alignParentTop="true"
-        android:animateLayoutChanges="true"
-        android:orientation="vertical">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="57dp"
+        android:ems="10"
+        android:hint="@string/title"
+        android:inputType="textPersonName" />
 
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="98dp"
-            android:layout_marginEnd="76dp"
-            android:text="Save" />
+    <EditText
+        android:id="@+id/descriptionText"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/titleText"
+        android:layout_below="@+id/titleText"
+        android:layout_marginTop="33dp"
+        android:ems="10"
+        android:hint="@string/description"
+        android:inputType="textPersonName" />
 
-        <Button
-            android:id="@+id/cancel_button"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="Cancel"
-            android:layout_alignStart="@+id/typeSpinner"
-            android:layout_alignBottom="@+id/save_button" />
-
-        <EditText
-            android:id="@+id/titleText"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="57dp"
-            android:ems="10"
-            android:hint="Title"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/descriptionText"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:layout_alignStart="@+id/titleText"
-            android:layout_below="@+id/titleText"
-            android:layout_marginTop="33dp"
-            android:ems="10"
-            android:hint="Description"
-            android:inputType="textPersonName" />
-
-        <Spinner
-            android:id="@+id/typeSpinner"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:layout_alignStart="@+id/descriptionText"
-            android:layout_below="@+id/descriptionText"
-            android:layout_marginTop="42dp"
-            tools:visibility="visible" />
-
-    </RelativeLayout>
+    <Spinner
+        android:id="@+id/typeSpinner"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/descriptionText"
+        android:layout_below="@+id/descriptionText"
+        android:layout_marginTop="42dp"
+        tools:visibility="visible" />
 
 </RelativeLayout>

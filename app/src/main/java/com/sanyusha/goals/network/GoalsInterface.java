@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -27,4 +28,10 @@ public interface GoalsInterface {
                                    @Query("type") String type,
                                    @Query("date") long date
                                        );
+
+    @DELETE("/target")
+    Call<ResponseBody> deleteTarget(@Query("uId") String uId,
+                        @Query("tId") Integer tId,
+                        @Query("token") String token
+                        );
 }

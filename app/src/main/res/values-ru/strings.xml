@@ -7,4 +7,8 @@
     <string name="month">Месяц</string>
     <string name="week">Неделя</string>
     <string name="year">Год</string>
+    <string name="title">Название</string>
+    <string name="description">Описание</string>
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отмена</string>
 </resources>

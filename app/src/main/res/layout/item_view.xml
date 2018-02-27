@@ -37,18 +37,18 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="15dp"
-            android:text="ergrege"
+            android:text="@string/life"
             android:textSize="20sp"></TextView>
 
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="10dp"
-            android:text="rehreh"></TextView>
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/life"></TextView>
 
     </LinearLayout>
     <!--<ImageView-->

@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.sanyusha.goals.adapters.GoalsAdapter;
@@ -17,6 +20,7 @@ import com.sanyusha.goals.network.GoalsBuilder;
 
 import java.util.ArrayList;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,6 +32,7 @@ public class GoalListActivity extends Activity {
     GoalsAdapter mAdapter;
     ListView lstTask;
     private SharedPreferences sPref;
+    private static final int CM_DELETE_ID = 1;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -41,6 +46,7 @@ public class GoalListActivity extends Activity {
                 case R.id.action_item2:
                     Intent intent = new Intent(getApplicationContext(), NewGoalActivity.class);
                     startActivity(intent);
+                    Log.d("test", "move to NewGoal");
                     return true;
                 case R.id.action_item3:
                     intent = new Intent(getApplicationContext(), SettingActivity.class);
@@ -59,14 +65,50 @@ public class GoalListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_list);
 
-        lstTask = (ListView) findViewById(R.id.lstTask);
+        lstTask = findViewById(R.id.lstTask);
 
         loadTaskList();
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(0, CM_DELETE_ID, 0, "Удалить запись");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        sPref = getSharedPreferences("vk", MODE_PRIVATE);
+        String userId = sPref.getString("user_id", "");
+        String accessToken = sPref.getString("access_token", "");
+        if (item.getItemId() == CM_DELETE_ID) {
+            // получаем инфу о пункте списка
+            final AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            // удаляем Map из коллекции, используя позицию пункта в списке
+
+            Call<ResponseBody> call = GoalsBuilder.getApi().deleteTarget(userId, goals.get(acmi.position).gettId(), accessToken);
+            call.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    // уведомляем, что данные изменились
+                    mAdapter.notifyDataSetChanged();
+                    goals.remove(acmi.position);
+                    Log.d("test", "deleting success");
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.d("test", "deleting failure");
+                }
+            });
+            return true;
+        }
+        return super.onContextItemSelected(item);
+    }
 
     private void loadTaskList() {
 
@@ -84,6 +126,7 @@ public class GoalListActivity extends Activity {
                     goals = response.body();
                     mAdapter = new GoalsAdapter(activity, goals);
                     lstTask.setAdapter(mAdapter);
+                    registerForContextMenu(lstTask);
                 }
             }
 
