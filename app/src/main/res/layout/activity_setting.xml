@@ -14,6 +14,15 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/navigation"
         android:animateLayoutChanges="true">
+
+        <Button
+            android:id="@+id/archive_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="12dp"
+            android:text="@string/archive" />
     </RelativeLayout>
 
     <android.support.design.widget.BottomNavigationView

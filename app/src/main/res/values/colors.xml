@@ -10,4 +10,8 @@
     <color name="yearColor">#62ba04</color>
     <color name="lifeColor">#cc23bc</color>
     <color name="unknownColor">#888888</color>
+    <color name="blueSwipe">#ff00ddff</color>
+    <color name="greenSwipe">#ff99cc00</color>
+    <color name="redSwipe">#ffff4444</color>
+    <color name="orangeSwipe">#ffffbb33</color>
 </resources>

@@ -9,6 +9,7 @@ import retrofit2.Call;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 /**
@@ -34,4 +35,15 @@ public interface GoalsInterface {
                         @Query("tId") Integer tId,
                         @Query("token") String token
                         );
+
+    @PUT("/target/edit")
+    Call<ResponseBody> putTarget(@Query("uId") String id,
+                                 @Query("tId") Integer tId,
+                                 @Query("token") String token,
+                                 @Query("title") String title,
+                                 @Query("description") String description,
+                                 @Query("type") String type,
+                                 @Query("date") long date,
+                                 @Query("star") boolean star
+                                 );
 }

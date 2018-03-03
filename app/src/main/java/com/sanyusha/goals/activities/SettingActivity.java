@@ -1,5 +1,6 @@
 package com.sanyusha.goals.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,11 +8,14 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.sanyusha.goals.R;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends Activity implements View.OnClickListener {
 
+    Button archiveButton;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -23,6 +27,7 @@ public class SettingActivity extends AppCompatActivity {
                 case R.id.action_item1:
                     Intent intent = new Intent(getApplicationContext(), GoalListActivity.class);
                     startActivity(intent);
+                    Log.d("test", "in List");
                     return true;
                 case R.id.action_item2:
                     intent = new Intent(getApplicationContext(), NewGoalActivity.class);
@@ -42,9 +47,16 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        Log.d("test", "privet");
+        archiveButton = findViewById(R.id.archive_button);
+        archiveButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getApplicationContext(), ArchiveActivity.class);
+        startActivity(intent);
     }
 }

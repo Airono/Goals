@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -26,13 +28,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class GoalListActivity extends Activity {
+public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnRefreshListener{
 
     ArrayList<Goal> goals = new ArrayList<>();
     GoalsAdapter mAdapter;
     ListView lstTask;
     private SharedPreferences sPref;
     private static final int CM_DELETE_ID = 1;
+    private SwipeRefreshLayout mSwipeLayout;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -46,7 +49,6 @@ public class GoalListActivity extends Activity {
                 case R.id.action_item2:
                     Intent intent = new Intent(getApplicationContext(), NewGoalActivity.class);
                     startActivity(intent);
-                    Log.d("test", "move to NewGoal");
                     return true;
                 case R.id.action_item3:
                     intent = new Intent(getApplicationContext(), SettingActivity.class);
@@ -71,13 +73,19 @@ public class GoalListActivity extends Activity {
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        mSwipeLayout = findViewById(R.id.swipe);
+        mSwipeLayout.setOnRefreshListener(this);
+        mSwipeLayout.setColorSchemeResources(
+                R.color.blueSwipe, R.color.greenSwipe,
+                R.color.orangeSwipe, R.color.redSwipe);
     }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add(0, CM_DELETE_ID, 0, "Удалить запись");
+        menu.add(0, CM_DELETE_ID, 0, R.string.delete);
     }
 
     @Override
@@ -88,8 +96,7 @@ public class GoalListActivity extends Activity {
         if (item.getItemId() == CM_DELETE_ID) {
             // получаем инфу о пункте списка
             final AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-            // удаляем Map из коллекции, используя позицию пункта в списке
-
+            // удаляем, используя позицию пункта в списке
             Call<ResponseBody> call = GoalsBuilder.getApi().deleteTarget(userId, goals.get(acmi.position).gettId(), accessToken);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
@@ -129,7 +136,6 @@ public class GoalListActivity extends Activity {
                     registerForContextMenu(lstTask);
                 }
             }
-
             @Override
             public void onFailure(Call<ArrayList<Goal>> call, Throwable throwable) {
                 Log.d("test", "failure");
@@ -139,4 +145,14 @@ public class GoalListActivity extends Activity {
 
     }
 
+    @Override
+    public void onRefresh() {
+        Log.d("test", "refresh");
+        new Handler().postDelayed(new Runnable() {
+            @Override public void run() {
+                loadTaskList();
+                mSwipeLayout.setRefreshing(false);
+            }
+        }, 7000);
+    }
 }

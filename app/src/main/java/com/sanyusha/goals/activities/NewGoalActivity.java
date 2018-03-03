@@ -39,23 +39,20 @@ public class NewGoalActivity extends Activity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("test", "in NewGoal");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_goal);
-        Log.d("test", "in NewGoal2");
 
         titleText = findViewById(R.id.titleText);
         descriptionText = findViewById(R.id.descriptionText);
 
-        Log.d("test", "in NewGoal3");
         Resources res = getResources();
         for (Goal.Type type: Goal.Type.values()) {
-            Integer resID = res.getIdentifier(type.name(), "string", getPackageName());
-            String typeName = getString(resID);
-            types.add(typeName);
-            Log.d("test", typeName);
+            if (type != Goal.Type.unknown) {
+                Integer resID = res.getIdentifier(type.name(), "string", getPackageName());
+                String typeName = getString(resID);
+                types.add(typeName);
+            }
         }
-        Log.d("test", "in NewGoal4");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, types);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -72,7 +69,6 @@ public class NewGoalActivity extends Activity implements View.OnClickListener{
 
             }
         });
-        Log.d("test", "in NewGoal5");
         saveButton = findViewById(R.id.save_button);
         saveButton.setOnClickListener(this);
 
@@ -120,14 +116,14 @@ public class NewGoalActivity extends Activity implements View.OnClickListener{
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(activity, "Saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, R.string.saved, Toast.LENGTH_SHORT).show();
 
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(activity, "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, R.string.error, Toast.LENGTH_SHORT).show();
                 Log.d("test", call.request().url().toString());
             }
         });
