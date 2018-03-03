@@ -3,6 +3,8 @@ package com.sanyusha.goals.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -14,7 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.sanyusha.goals.adapters.GoalsAdapter;
 import com.sanyusha.goals.R;
 import com.sanyusha.goals.models.Goal;
@@ -30,12 +37,38 @@ import retrofit2.Response;
 
 public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnRefreshListener{
 
+    private static final String TAG = "test";
+
     ArrayList<Goal> goals = new ArrayList<>();
     GoalsAdapter mAdapter;
-    ListView lstTask;
+    SwipeMenuListView lstTask;
+    ProgressBar progressBar;
     private SharedPreferences sPref;
     private static final int CM_DELETE_ID = 1;
     private SwipeRefreshLayout mSwipeLayout;
+
+    SwipeMenuCreator creator = new SwipeMenuCreator() {
+
+        @Override
+        public void create(SwipeMenu menu) {
+            // create "open" item
+            SwipeMenuItem doneItem = new SwipeMenuItem(
+                    getApplicationContext());
+            // set item background
+            doneItem.setBackground(R.color.greenSwipe);
+            // set item width
+            doneItem.setWidth(120);
+            // set item title
+            doneItem.setTitle("Done");
+            // set item title fontsize
+            doneItem.setTitleSize(18);
+            // set item title font color
+            doneItem.setTitleColor(Color.WHITE);
+            // add to menu
+            doneItem.setIcon(R.drawable.ic_ab_done);
+            menu.addMenuItem(doneItem);
+        }
+    };
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -67,7 +100,22 @@ public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnR
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_list);
 
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+
         lstTask = findViewById(R.id.lstTask);
+        lstTask.setMenuCreator(creator);
+        lstTask.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
+        lstTask.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                if (index == 0) {
+                    //прописать выполнение и перемещение в архив
+                    Log.d(TAG, "onMenuItemClick: done");
+                }
+                return false;
+            }
+        });
 
         loadTaskList();
 
@@ -131,6 +179,7 @@ public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnR
                 if (response.isSuccessful()) {
                     Log.d("test", "success");
                     goals = response.body();
+                    progressBar.setVisibility(ProgressBar.INVISIBLE);
                     mAdapter = new GoalsAdapter(activity, goals);
                     lstTask.setAdapter(mAdapter);
                     registerForContextMenu(lstTask);
@@ -142,7 +191,6 @@ public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnR
                 Log.d("test", call.request().url().toString());
             }
         });
-
     }
 
     @Override
@@ -153,6 +201,6 @@ public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnR
                 loadTaskList();
                 mSwipeLayout.setRefreshing(false);
             }
-        }, 7000);
+        }, 3000);
     }
 }

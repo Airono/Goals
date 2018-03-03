@@ -8,6 +8,18 @@
     android:layout_height="match_parent"
     tools:context="com.sanyusha.goals.activities.SettingActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="visible"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="143dp"
+        android:indeterminateTintMode="src_in"
+        android:indeterminateTint="@color/progressBar"/>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
@@ -20,18 +32,17 @@
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        tools:ignore="UselessParent">
+        android:layout_alignParentTop="true"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
 
-            <ListView
-                android:id="@+id/lstTask"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <com.baoyz.swipemenulistview.SwipeMenuListView
+            android:id="@+id/lstTask"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

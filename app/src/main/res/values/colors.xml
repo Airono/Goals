@@ -14,4 +14,5 @@
     <color name="greenSwipe">#ff99cc00</color>
     <color name="redSwipe">#ffff4444</color>
     <color name="orangeSwipe">#ffffbb33</color>
+    <color name="progressBar">#6079b3</color>
 </resources>
