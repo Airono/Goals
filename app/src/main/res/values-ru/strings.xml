@@ -16,4 +16,5 @@
     <string name="edit">Редактировать</string>
     <string name="saved">Сохранено</string>
     <string name="error">Ошибка</string>
+    <string name="errorLoading">Ошибка загрузки файлов</string>
 </resources>

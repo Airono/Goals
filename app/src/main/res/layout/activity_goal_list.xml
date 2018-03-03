@@ -20,6 +20,16 @@
         android:indeterminateTintMode="src_in"
         android:indeterminateTint="@color/progressBar"/>
 
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:text="@string/errorLoading"
+        android:textSize="@dimen/error_font" />
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"

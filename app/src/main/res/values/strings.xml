@@ -17,4 +17,5 @@
     <string name="edit">Edit</string>
     <string name="saved">Saved</string>
     <string name="error">Error</string>
+    <string name="errorLoading">Error of loading</string>
 </resources>

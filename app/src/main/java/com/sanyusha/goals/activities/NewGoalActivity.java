@@ -6,10 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,7 +20,6 @@ import com.sanyusha.goals.models.Goal;
 import com.sanyusha.goals.network.GoalsBuilder;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

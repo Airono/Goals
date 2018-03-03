@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -15,15 +14,15 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
-import com.sanyusha.goals.adapters.GoalsAdapter;
 import com.sanyusha.goals.R;
+import com.sanyusha.goals.adapters.GoalsAdapter;
 import com.sanyusha.goals.models.Goal;
 import com.sanyusha.goals.network.GoalsBuilder;
 
@@ -43,6 +42,7 @@ public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnR
     GoalsAdapter mAdapter;
     SwipeMenuListView lstTask;
     ProgressBar progressBar;
+    TextView textView;
     private SharedPreferences sPref;
     private static final int CM_DELETE_ID = 1;
     private SwipeRefreshLayout mSwipeLayout;
@@ -51,24 +51,54 @@ public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnR
 
         @Override
         public void create(SwipeMenu menu) {
-            // create "open" item
             SwipeMenuItem doneItem = new SwipeMenuItem(
                     getApplicationContext());
-            // set item background
             doneItem.setBackground(R.color.greenSwipe);
-            // set item width
-            doneItem.setWidth(120);
-            // set item title
+            doneItem.setWidth(150);
             doneItem.setTitle("Done");
-            // set item title fontsize
             doneItem.setTitleSize(18);
-            // set item title font color
             doneItem.setTitleColor(Color.WHITE);
-            // add to menu
             doneItem.setIcon(R.drawable.ic_ab_done);
             menu.addMenuItem(doneItem);
         }
     };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_goal_list);
+
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+
+        textView = findViewById(R.id.error);
+        textView.setVisibility(TextView.INVISIBLE);
+
+        mSwipeLayout = findViewById(R.id.swipe);
+        mSwipeLayout.setOnRefreshListener(this);
+        mSwipeLayout.setColorSchemeResources(
+                R.color.blueSwipe, R.color.greenSwipe,
+                R.color.orangeSwipe, R.color.redSwipe);
+
+        lstTask = findViewById(R.id.lstTask);
+        lstTask.setMenuCreator(creator);
+        lstTask.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
+        lstTask.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                if (index == 0) {
+                    //прописать выполнение и перемещение в архив
+                    Log.d(TAG, "onMenuItemClick: done");
+                }
+                return false;
+            }
+        });
+
+        loadTaskList();
+
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -92,42 +122,6 @@ public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnR
         }
 
     };
-
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_goal_list);
-
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(ProgressBar.VISIBLE);
-
-        lstTask = findViewById(R.id.lstTask);
-        lstTask.setMenuCreator(creator);
-        lstTask.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
-        lstTask.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                if (index == 0) {
-                    //прописать выполнение и перемещение в архив
-                    Log.d(TAG, "onMenuItemClick: done");
-                }
-                return false;
-            }
-        });
-
-        loadTaskList();
-
-        BottomNavigationView navigation = findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        mSwipeLayout = findViewById(R.id.swipe);
-        mSwipeLayout.setOnRefreshListener(this);
-        mSwipeLayout.setColorSchemeResources(
-                R.color.blueSwipe, R.color.greenSwipe,
-                R.color.orangeSwipe, R.color.redSwipe);
-    }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
@@ -180,6 +174,8 @@ public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnR
                     Log.d("test", "success");
                     goals = response.body();
                     progressBar.setVisibility(ProgressBar.INVISIBLE);
+                    lstTask.setVisibility(SwipeMenuListView.VISIBLE);
+                    textView.setVisibility(TextView.INVISIBLE);
                     mAdapter = new GoalsAdapter(activity, goals);
                     lstTask.setAdapter(mAdapter);
                     registerForContextMenu(lstTask);
@@ -189,6 +185,9 @@ public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnR
             public void onFailure(Call<ArrayList<Goal>> call, Throwable throwable) {
                 Log.d("test", "failure");
                 Log.d("test", call.request().url().toString());
+                lstTask.setVisibility(SwipeMenuListView.INVISIBLE);
+                progressBar.setVisibility(ProgressBar.INVISIBLE);
+                textView.setVisibility(TextView.VISIBLE);
             }
         });
     }
@@ -201,6 +200,8 @@ public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnR
                 loadTaskList();
                 mSwipeLayout.setRefreshing(false);
             }
-        }, 3000);
+        },
+                //time of loading
+                3000);
     }
 }
