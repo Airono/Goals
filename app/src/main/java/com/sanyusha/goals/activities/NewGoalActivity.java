@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewGoalActivity extends Activity implements View.OnClickListener{
+public class NewGoalActivity extends AppCompatActivity implements View.OnClickListener{
 
     private EditText titleText, descriptionText;
     Button saveButton, cancelButton;
@@ -38,8 +39,8 @@ public class NewGoalActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_goal);
 
-        titleText = findViewById(R.id.titleText);
-        descriptionText = findViewById(R.id.descriptionText);
+        titleText = (EditText) findViewById(R.id.titleText);
+        descriptionText = (EditText) findViewById(R.id.descriptionText);
 
         Resources res = getResources();
         for (Goal.Type type: Goal.Type.values()) {
@@ -52,7 +53,7 @@ public class NewGoalActivity extends Activity implements View.OnClickListener{
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, types);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        Spinner spinner = findViewById(R.id.typeSpinner);
+        Spinner spinner = (Spinner) findViewById(R.id.typeSpinner);
         spinner.setAdapter(adapter);
         spinner.setPrompt("Type");
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -65,10 +66,10 @@ public class NewGoalActivity extends Activity implements View.OnClickListener{
 
             }
         });
-        saveButton = findViewById(R.id.save_button);
+        saveButton = (Button) findViewById(R.id.save_button);
         saveButton.setOnClickListener(this);
 
-        cancelButton = findViewById(R.id.cancel_button);
+        cancelButton = (Button) findViewById(R.id.cancel_button);
         cancelButton.setOnClickListener(this);
     }
 

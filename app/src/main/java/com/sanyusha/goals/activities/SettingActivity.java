@@ -13,7 +13,7 @@ import android.widget.Button;
 
 import com.sanyusha.goals.R;
 
-public class SettingActivity extends Activity implements View.OnClickListener {
+public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button archiveButton;
 
@@ -47,10 +47,10 @@ public class SettingActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        BottomNavigationView navigation = findViewById(R.id.navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        archiveButton = findViewById(R.id.archive_button);
+        archiveButton = (Button) findViewById(R.id.archive_button);
         archiveButton.setOnClickListener(this);
     }
 

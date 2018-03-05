@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -34,7 +36,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnRefreshListener{
+public class GoalListActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
 
     private static final String TAG = "test";
 
@@ -68,19 +70,19 @@ public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnR
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_list);
 
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
 
-        textView = findViewById(R.id.error);
+        textView = (TextView) findViewById(R.id.error);
         textView.setVisibility(TextView.INVISIBLE);
 
-        mSwipeLayout = findViewById(R.id.swipe);
+        mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe);
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(
                 R.color.blueSwipe, R.color.greenSwipe,
                 R.color.orangeSwipe, R.color.redSwipe);
 
-        lstTask = findViewById(R.id.lstTask);
+        lstTask = (SwipeMenuListView) findViewById(R.id.lstTask);
         lstTask.setMenuCreator(creator);
         lstTask.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
         lstTask.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
@@ -96,7 +98,7 @@ public class GoalListActivity extends Activity implements SwipeRefreshLayout.OnR
 
         loadTaskList();
 
-        BottomNavigationView navigation = findViewById(R.id.navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 

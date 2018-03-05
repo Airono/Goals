@@ -1,11 +1,14 @@
 package com.sanyusha.goals.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.sanyusha.goals.R;
 import com.vk.sdk.VKAccessToken;
@@ -14,11 +17,16 @@ import com.vk.sdk.VKScope;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by Alexandra on 27.01.2018.
  */
 
-public class StartActivity extends Activity {
+public class StartActivity extends AppCompatActivity {
+
+    private static final String TAG = "test";
+    String preferences_name = "isFirstTime";
 
     private static String sTokenKey = "VK_ACCESS_TOKEN";
     private static String[] sMyScope = new String[]{VKScope.GROUPS};
@@ -28,7 +36,8 @@ public class StartActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        Log.d("test", "poка");
+
+        firstTime();
     }
 
     @Override
@@ -66,6 +75,22 @@ public class StartActivity extends Activity {
 
     public void authorizationButton(View v) {
         VKSdk.login(this, sMyScope);
+    }
+
+    public  void  firstTime(){
+
+        SharedPreferences sharedTime = getSharedPreferences(preferences_name,0);
+        if (sharedTime.getBoolean("firstTime",true))
+        {
+            Log.d(TAG, "onCreate: in StartActivity");
+            sharedTime.edit().putBoolean("firstTime",false).apply();
+        }
+        else
+        {
+            Intent intent = new Intent(getApplicationContext(), GoalListActivity.class);
+            startActivity(intent);
+        }
+
     }
 
 }

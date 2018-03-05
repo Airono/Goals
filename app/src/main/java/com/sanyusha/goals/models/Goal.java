@@ -19,8 +19,6 @@ public class Goal {
         life,
         unknown;
 
-        int color;
-
         public int getColor() {
             switch(this) {
                 case week:

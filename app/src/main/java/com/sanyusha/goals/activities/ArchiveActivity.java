@@ -11,7 +11,7 @@ import com.sanyusha.goals.models.Goal;
 
 import java.util.ArrayList;
 
-public class ArchiveActivity extends Activity {
+public class ArchiveActivity extends AppCompatActivity {
 
     ArrayList<Goal> archive = new ArrayList<>();
     GoalsAdapter mAdapter;
@@ -22,7 +22,7 @@ public class ArchiveActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
 
-        archiveLv = findViewById(R.id.archive_lv);
+        archiveLv = (ListView) findViewById(R.id.archive_lv);
 
         final Activity activity = this;
         mAdapter = new GoalsAdapter(activity, archive);

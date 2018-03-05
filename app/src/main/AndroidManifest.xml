@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.GoalListActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity android:name=".activities.NewGoalActivity" />
         <activity android:name=".activities.SettingActivity" />
         <activity android:name=".activities.StartActivity">
@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ArchiveActivity"></activity>
+        <activity android:name=".activities.ArchiveActivity" />
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.sanyusha.goals.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -13,15 +14,17 @@ import com.sanyusha.goals.models.Goal;
 
 import java.util.ArrayList;
 
+import static java.lang.Math.ceil;
+
 
 /**
  * Created by Alexandra on 10.02.2018.
  */
 
 public class GoalsAdapter extends BaseAdapter {
-    public Context ctx;
-    LayoutInflater lInflater;
-    ArrayList<Goal> objects;
+    private Context ctx;
+    private LayoutInflater lInflater;
+    private ArrayList<Goal> objects;
 
     public GoalsAdapter(Context context, ArrayList<Goal> goals) {
         ctx = context;
@@ -49,6 +52,7 @@ public class GoalsAdapter extends BaseAdapter {
     }
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -61,6 +65,37 @@ public class GoalsAdapter extends BaseAdapter {
 
         ((TextView) view.findViewById(R.id.title)).setText(p.getTitle());
         ((TextView) view.findViewById(R.id.description)).setText(p.getDescription());
+//        ((TextView) view.findViewById(R.id.date)).setText(R.string.time);
+
+        long dateAchievement = p.getDate();
+        switch (p.getType()) {
+            case week:
+                dateAchievement = dateAchievement + 604800;
+                if (dateAchievement - System.currentTimeMillis() / 1000 < 0)
+                    ((TextView) view.findViewById(R.id.date)).setText(R.string.time);
+                else
+                    ((TextView) view.findViewById(R.id.date)).setText(Integer.toString(
+                            secToDays(dateAchievement - System.currentTimeMillis() / 1000)));
+            case month:
+                dateAchievement = dateAchievement + 2592000;
+                if (dateAchievement - System.currentTimeMillis() / 1000 < 0)
+                    ((TextView) view.findViewById(R.id.date)).setText(R.string.time);
+                else
+                    ((TextView) view.findViewById(R.id.date)).setText(Integer.toString(
+                            secToDays(dateAchievement - System.currentTimeMillis() / 1000)));
+            case year:
+                dateAchievement = dateAchievement + 31536000;
+                if (dateAchievement - System.currentTimeMillis() / 1000 < 0)
+                    ((TextView) view.findViewById(R.id.date)).setText(R.string.time);
+                else
+                    ((TextView) view.findViewById(R.id.date)).setText(Integer.toString(
+                            secToDays(dateAchievement - System.currentTimeMillis() / 1000)));
+            case life:
+                ((TextView) view.findViewById(R.id.date)).setText(Integer.toString(p.gettId() % 100));
+            default:
+                ((TextView) view.findViewById(R.id.date)).setText(Integer.toString(p.gettId() % 100));
+        }
+
         view.findViewById(R.id.typeView).setBackgroundColor(ContextCompat.getColor(ctx, p.getType().getColor()));
         return view;
     }
@@ -69,8 +104,14 @@ public class GoalsAdapter extends BaseAdapter {
         return objects;
     }
 
-    Goal getGoal(int position) {
+    private Goal getGoal(int position) {
         return ((Goal) getItem(position));
     }
 
+    private int secToDays(long secs) {
+        int days;
+        double diff = ceil(secs / 86400);
+        days = (int) diff;
+        return days;
+    }
 }

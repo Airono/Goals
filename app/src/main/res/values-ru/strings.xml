@@ -17,4 +17,5 @@
     <string name="saved">Сохранено</string>
     <string name="error">Ошибка</string>
     <string name="errorLoading">Ошибка загрузки файлов</string>
+    <string name="time">Время истекло</string>
 </resources>
