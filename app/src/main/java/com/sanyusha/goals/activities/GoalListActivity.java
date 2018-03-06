@@ -78,9 +78,7 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
 
         mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe);
         mSwipeLayout.setOnRefreshListener(this);
-        mSwipeLayout.setColorSchemeResources(
-                R.color.blueSwipe, R.color.greenSwipe,
-                R.color.orangeSwipe, R.color.redSwipe);
+        mSwipeLayout.setColorSchemeResources(R.color.blueSwipe, R.color.greenSwipe);
 
         lstTask = (SwipeMenuListView) findViewById(R.id.lstTask);
         lstTask.setMenuCreator(creator);

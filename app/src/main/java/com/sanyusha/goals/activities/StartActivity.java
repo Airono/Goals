@@ -27,8 +27,6 @@ public class StartActivity extends AppCompatActivity {
 
     private static final String TAG = "test";
     String preferences_name = "isFirstTime";
-
-    private static String sTokenKey = "VK_ACCESS_TOKEN";
     private static String[] sMyScope = new String[]{VKScope.GROUPS};
     private SharedPreferences sPref;
 

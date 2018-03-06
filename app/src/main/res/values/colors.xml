@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#819BD5</color>
-    <color name="colorPrimaryDark">#6079b3</color>
-    <color name="colorAccent">#2A498A</color>
+    <color name="colorPrimary">#04C2D4</color>
+    <color name="colorPrimaryDark">#2996A0</color>
+    <color name="colorAccent">#017F8B</color>
     <color name="nav_item_state_list">#FFFFFF</color>
     <color name="buttonTextColor">#ffffff</color>
     <color name="weekColor">#21accc</color>
@@ -10,9 +10,7 @@
     <color name="yearColor">#62ba04</color>
     <color name="lifeColor">#cc23bc</color>
     <color name="unknownColor">#888888</color>
-    <color name="blueSwipe">#ff00ddff</color>
-    <color name="greenSwipe">#ff99cc00</color>
-    <color name="redSwipe">#ffff4444</color>
-    <color name="orangeSwipe">#ffffbb33</color>
+    <color name="blueSwipe">#1952ED</color>
+    <color name="greenSwipe">#00F31E</color>
     <color name="progressBar">#6079b3</color>
 </resources>

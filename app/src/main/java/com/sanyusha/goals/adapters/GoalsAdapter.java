@@ -71,29 +71,42 @@ public class GoalsAdapter extends BaseAdapter {
         switch (p.getType()) {
             case week:
                 dateAchievement = dateAchievement + 604800;
-                if (dateAchievement - System.currentTimeMillis() / 1000 < 0)
+                if (dateAchievement - System.currentTimeMillis() / 1000 < 0) {
                     ((TextView) view.findViewById(R.id.date)).setText(R.string.time);
-                else
+                    break;
+                }
+                else {
                     ((TextView) view.findViewById(R.id.date)).setText(Integer.toString(
                             secToDays(dateAchievement - System.currentTimeMillis() / 1000)));
+                    break;
+                }
             case month:
                 dateAchievement = dateAchievement + 2592000;
-                if (dateAchievement - System.currentTimeMillis() / 1000 < 0)
+                if (dateAchievement - System.currentTimeMillis() / 1000 < 0) {
                     ((TextView) view.findViewById(R.id.date)).setText(R.string.time);
-                else
+                    break;
+                }
+                else {
                     ((TextView) view.findViewById(R.id.date)).setText(Integer.toString(
                             secToDays(dateAchievement - System.currentTimeMillis() / 1000)));
+                    break;
+                }
             case year:
                 dateAchievement = dateAchievement + 31536000;
-                if (dateAchievement - System.currentTimeMillis() / 1000 < 0)
+                if (dateAchievement - System.currentTimeMillis() / 1000 < 0) {
                     ((TextView) view.findViewById(R.id.date)).setText(R.string.time);
-                else
+                    break;
+                }
+                else {
                     ((TextView) view.findViewById(R.id.date)).setText(Integer.toString(
                             secToDays(dateAchievement - System.currentTimeMillis() / 1000)));
+                    break;
+                }
             case life:
-                ((TextView) view.findViewById(R.id.date)).setText(Integer.toString(p.gettId() % 100));
+                ((TextView) view.findViewById(R.id.date)).setText("life");
+                break;
             default:
-                ((TextView) view.findViewById(R.id.date)).setText(Integer.toString(p.gettId() % 100));
+                ((TextView) view.findViewById(R.id.date)).setText("unknown");
         }
 
         view.findViewById(R.id.typeView).setBackgroundColor(ContextCompat.getColor(ctx, p.getType().getColor()));
