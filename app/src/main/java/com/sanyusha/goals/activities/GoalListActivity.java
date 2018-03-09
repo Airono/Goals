@@ -75,6 +75,8 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_list);
 
+        mAdapter = new GoalsAdapter(this, goals);
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
 
@@ -112,6 +114,17 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
 
         MenuItem item = menu.findItem(R.id.action_filter);
         Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mAdapter.getFilter().filter(String.valueOf(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.spinner_list_item_array, android.R.layout.simple_spinner_item);
@@ -119,19 +132,6 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
 
         spinner.setAdapter(adapter);
         return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_filter:
-                //filter
-                mAdapter.getFilter().filter(item.getOrder() + "");
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

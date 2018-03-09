@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class GoalsFilter extends Filter {
 
     private final GoalsAdapter adapter;
-    ArrayList<Goal> goals = new ArrayList<>();
+    private ArrayList<Goal> goals = new ArrayList<>();
     private static final String TAG = "test";
 
     public GoalsFilter(GoalsAdapter adapter) {
@@ -27,16 +27,16 @@ public class GoalsFilter extends Filter {
     @Override
     protected FilterResults performFiltering(CharSequence constraint) {
         FilterResults results = new FilterResults();
-        if (constraint == null || constraint.length() == 0) {
+        goals = adapter.objectsConst;
+        if (constraint == null || constraint.length() == 0 || constraint.equals("0")) {
             //show all
-            results.values = adapter.getList();
-            results.count = adapter.getCount();
+            results.values = adapter.objectsConst;
+            results.count = adapter.objectsConst.size();
         } else {
             //filtered
-            Log.d(TAG, "performFiltering: " + constraint);
             ArrayList<Goal> newList = new ArrayList<>();
 
-            if (constraint.equals('1')) {
+            if (constraint.equals("1")) {
                 newList.clear();
                 for (Goal goal: goals) {
                     if (goal.getType() == Goal.Types.week) {
@@ -44,7 +44,7 @@ public class GoalsFilter extends Filter {
                         //add week
                     }
                 }
-            } else if (constraint.equals('2')) {
+            } else if (constraint.equals("2")) {
                 newList.clear();
                 for (Goal goal: goals) {
                     if (goal.getType() == Goal.Types.month) {
@@ -52,7 +52,7 @@ public class GoalsFilter extends Filter {
                         //add month
                     }
                 }
-            } else if (constraint.equals('3')) {
+            } else if (constraint.equals("3")) {
                 newList.clear();
                 for (Goal goal: goals) {
                     if (goal.getType() == Goal.Types.year) {
@@ -60,7 +60,7 @@ public class GoalsFilter extends Filter {
                         //add year
                     }
                 }
-            } else if (constraint.equals('4')) {
+            } else if (constraint.equals("4")) {
                 newList.clear();
                 for (Goal goal: goals) {
                     if (goal.getType() == Goal.Types.life) {
@@ -77,8 +77,7 @@ public class GoalsFilter extends Filter {
 
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
-        //написать вот этот метод
-        //adapter.setFilteredList();
+        adapter.objects = (ArrayList<Goal>) results.values;
         if (results.count == 0) {
             adapter.notifyDataSetInvalidated();
         } else {

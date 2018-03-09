@@ -27,12 +27,14 @@ import static java.lang.Math.ceil;
 public class GoalsAdapter extends BaseAdapter implements Filterable {
     private Context ctx;
     private LayoutInflater lInflater;
-    private ArrayList<Goal> objects;
+    public ArrayList<Goal> objects;
+    public ArrayList<Goal> objectsConst;
     private GoalsFilter filter;
 
     public GoalsAdapter(Context context, ArrayList<Goal> goals) {
         ctx = context;
         objects = goals;
+        objectsConst = goals;
         lInflater = (LayoutInflater) ctx
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
