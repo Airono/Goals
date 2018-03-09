@@ -55,9 +55,9 @@ public class Goal {
 
     @SerializedName("tId")
     @Expose
-    private int tId;
+    private String tId;
 
-    public Goal(String title, String description, int type, long date, int tId) {
+    public Goal(String title, String description, int type, long date, String tId) {
         this.title = title;
         this.description = description;
         this.date = date;
@@ -102,11 +102,11 @@ public class Goal {
         this.date = date;
     }
 
-    public int gettId() {
+    public String gettId() {
         return tId;
     }
 
-    public void settId(int tId) {
+    public void settId(String tId) {
         this.tId = tId;
     }
 }

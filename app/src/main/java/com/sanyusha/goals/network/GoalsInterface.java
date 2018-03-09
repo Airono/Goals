@@ -31,7 +31,7 @@ public interface GoalsInterface {
 
     @DELETE("/target")
     Call<ResponseBody> deleteTarget(@Query("uId") String uId,
-                        @Query("tId") Integer tId,
+                        @Query("tId") String tId,
                         @Query("token") String token
                         );
 
