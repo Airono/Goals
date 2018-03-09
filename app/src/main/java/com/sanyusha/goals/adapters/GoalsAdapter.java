@@ -7,8 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
+import com.sanyusha.goals.GoalsFilter;
 import com.sanyusha.goals.R;
 import com.sanyusha.goals.models.Goal;
 
@@ -21,10 +24,11 @@ import static java.lang.Math.ceil;
  * Created by Alexandra on 10.02.2018.
  */
 
-public class GoalsAdapter extends BaseAdapter {
+public class GoalsAdapter extends BaseAdapter implements Filterable {
     private Context ctx;
     private LayoutInflater lInflater;
     private ArrayList<Goal> objects;
+    private GoalsFilter filter;
 
     public GoalsAdapter(Context context, ArrayList<Goal> goals) {
         ctx = context;
@@ -77,7 +81,7 @@ public class GoalsAdapter extends BaseAdapter {
                 }
                 else {
                     ((TextView) view.findViewById(R.id.date)).setText(Integer.toString(
-                            secToDays(dateAchievement - System.currentTimeMillis() / 1000)));
+                            secToDays(dateAchievement - System.currentTimeMillis() / 1000) + 1));
                     break;
                 }
             case month:
@@ -88,7 +92,7 @@ public class GoalsAdapter extends BaseAdapter {
                 }
                 else {
                     ((TextView) view.findViewById(R.id.date)).setText(Integer.toString(
-                            secToDays(dateAchievement - System.currentTimeMillis() / 1000)));
+                            secToDays(dateAchievement - System.currentTimeMillis() / 1000) + 1));
                     break;
                 }
             case year:
@@ -99,7 +103,7 @@ public class GoalsAdapter extends BaseAdapter {
                 }
                 else {
                     ((TextView) view.findViewById(R.id.date)).setText(Integer.toString(
-                            secToDays(dateAchievement - System.currentTimeMillis() / 1000)));
+                            secToDays(dateAchievement - System.currentTimeMillis() / 1000) + 1));
                     break;
                 }
             case life:
@@ -126,5 +130,13 @@ public class GoalsAdapter extends BaseAdapter {
         double diff = ceil(secs / 86400);
         days = (int) diff;
         return days;
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (filter == null) {
+            filter = new GoalsFilter(this);
+        }
+        return filter;
     }
 }

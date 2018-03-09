@@ -23,10 +23,9 @@ public interface GoalsInterface {
     @POST("/target/new")
     Call<ResponseBody> postTargets(@Query("uId") String id,
                                    @Query("token") String token,
-                                   @Query("tId") Integer tId,
                                    @Query("title") String title,
                                    @Query("description") String description,
-                                   @Query("type") String type,
+                                   @Query("type") int type,
                                    @Query("date") long date
                                        );
 
@@ -36,14 +35,5 @@ public interface GoalsInterface {
                         @Query("token") String token
                         );
 
-    @PUT("/target/edit")
-    Call<ResponseBody> putTarget(@Query("uId") String id,
-                                 @Query("tId") Integer tId,
-                                 @Query("token") String token,
-                                 @Query("title") String title,
-                                 @Query("description") String description,
-                                 @Query("type") String type,
-                                 @Query("date") long date,
-                                 @Query("star") boolean star
-                                 );
+
 }

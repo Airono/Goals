@@ -6,13 +6,15 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.sanyusha.goals.R;
 
+import java.net.Proxy;
+
 /**
  * Created by Александра on 09.12.2017.
  */
 
 public class Goal {
 
-    public enum Type {
+    public enum Types {
         week,
         month,
         year,
@@ -45,7 +47,7 @@ public class Goal {
 
     @SerializedName("type")
     @Expose
-    private String type;
+    private int type;
 
     @SerializedName("date")
     @Expose
@@ -55,7 +57,7 @@ public class Goal {
     @Expose
     private int tId;
 
-    public Goal(String title, String description, String type, long date, int tId) {
+    public Goal(String title, String description, int type, long date, int tId) {
         this.title = title;
         this.description = description;
         this.date = date;
@@ -79,16 +81,16 @@ public class Goal {
         this.description = description;
     }
 
-    public Type getType() {
+    public Types getType() {
         try {
-            return Type.valueOf(type);
+            return Types.values()[type];
         }
         catch(IllegalArgumentException e) {
-            return Type.unknown;
+            return Types.unknown;
         }
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 

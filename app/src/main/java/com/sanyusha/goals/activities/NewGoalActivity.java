@@ -32,7 +32,7 @@ public class NewGoalActivity extends AppCompatActivity implements View.OnClickLi
     private EditText titleText, descriptionText;
     Button saveButton, cancelButton;
     ArrayList<String> types = new ArrayList<>();
-    String typeText;
+    int typePosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,8 @@ public class NewGoalActivity extends AppCompatActivity implements View.OnClickLi
         descriptionText = (EditText) findViewById(R.id.descriptionText);
 
         Resources res = getResources();
-        for (Goal.Type type: Goal.Type.values()) {
-            if (type != Goal.Type.unknown) {
+        for (Goal.Types type: Goal.Types.values()) {
+            if (type != Goal.Types.unknown) {
                 Integer resID = res.getIdentifier(type.name(), "string", getPackageName());
                 String typeName = getString(resID);
                 types.add(typeName);
@@ -59,7 +59,7 @@ public class NewGoalActivity extends AppCompatActivity implements View.OnClickLi
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                typeText = Goal.Type.values()[position].name();
+                typePosition = position;
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -104,10 +104,9 @@ public class NewGoalActivity extends AppCompatActivity implements View.OnClickLi
         Call<ResponseBody> call = GoalsBuilder.getApi().postTargets(
                 userId,
                 accessToken,
-                11223,
                 titleText.getText().toString(),
                 descriptionText.getText().toString(),
-                typeText,
+                typePosition,
                 System.currentTimeMillis() / 1000);
         call.enqueue(new Callback<ResponseBody>() {
             @Override

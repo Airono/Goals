@@ -1,6 +1,7 @@
 package com.sanyusha.goals;
 
 import android.content.res.Resources;
+import android.util.Log;
 import android.widget.Filter;
 
 import com.sanyusha.goals.adapters.GoalsAdapter;
@@ -8,10 +9,6 @@ import com.sanyusha.goals.models.Goal;
 
 import java.util.ArrayList;
 
-import static com.sanyusha.goals.models.Goal.Type.life;
-import static com.sanyusha.goals.models.Goal.Type.month;
-import static com.sanyusha.goals.models.Goal.Type.week;
-import static com.sanyusha.goals.models.Goal.Type.year;
 
 /**
  * Created by Alexandra on 03.03.2018.
@@ -20,6 +17,8 @@ import static com.sanyusha.goals.models.Goal.Type.year;
 public class GoalsFilter extends Filter {
 
     private final GoalsAdapter adapter;
+    ArrayList<Goal> goals = new ArrayList<>();
+    private static final String TAG = "test";
 
     public GoalsFilter(GoalsAdapter adapter) {
         this.adapter = adapter;
@@ -34,29 +33,38 @@ public class GoalsFilter extends Filter {
             results.count = adapter.getCount();
         } else {
             //filtered
-            Resources res = Application.getAppContext().getResources();
+            Log.d(TAG, "performFiltering: " + constraint);
             ArrayList<Goal> newList = new ArrayList<>();
+
             if (constraint.equals('1')) {
-                for (Goal.Type type: Goal.Type.values()) {
-                    if (type == week) {
+                newList.clear();
+                for (Goal goal: goals) {
+                    if (goal.getType() == Goal.Types.week) {
+                        newList.add(goal);
                         //add week
                     }
                 }
             } else if (constraint.equals('2')) {
-                for (Goal.Type type: Goal.Type.values()) {
-                    if (type == month) {
+                newList.clear();
+                for (Goal goal: goals) {
+                    if (goal.getType() == Goal.Types.month) {
+                        newList.add(goal);
                         //add month
                     }
                 }
             } else if (constraint.equals('3')) {
-                for (Goal.Type type: Goal.Type.values()) {
-                    if (type == year) {
+                newList.clear();
+                for (Goal goal: goals) {
+                    if (goal.getType() == Goal.Types.year) {
+                        newList.add(goal);
                         //add year
                     }
                 }
             } else if (constraint.equals('4')) {
-                for (Goal.Type type: Goal.Type.values()) {
-                    if (type == life) {
+                newList.clear();
+                for (Goal goal: goals) {
+                    if (goal.getType() == Goal.Types.life) {
+                        newList.add(goal);
                         //add life
                     }
                 }

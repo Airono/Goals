@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_filter"
+        android:layout_width="wrap_content"
+        app:actionViewClass="android.widget.Spinner"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/filter_button"
+        android:title="@string/title"
+        app:showAsAction="always"/>
+
+</menu>
