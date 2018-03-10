@@ -12,8 +12,8 @@
         android:id="@+id/progressBar"
         android:visibility="visible"
         style="?android:attr/progressBarStyle"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="143dp"
@@ -52,6 +52,10 @@
 
         <com.baoyz.swipemenulistview.SwipeMenuListView
             android:id="@+id/lstTask"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <com.baoyz.swipemenulistview.SwipeMenuListView
+            android:id="@+id/delTask"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 

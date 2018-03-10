@@ -22,7 +22,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -66,6 +65,7 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
             doneItem.setTitleSize(18);
             doneItem.setTitleColor(Color.WHITE);
             doneItem.setIcon(R.drawable.ic_ab_done);
+
             menu.addMenuItem(doneItem);
         }
     };
@@ -89,7 +89,7 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
 
         lstTask = (SwipeMenuListView) findViewById(R.id.lstTask);
         lstTask.setMenuCreator(creator);
-        lstTask.setSwipeDirection(SwipeMenuListView.DIRECTION_RIGHT);
+        lstTask.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT);
         lstTask.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
