@@ -94,8 +94,26 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 if (index == 0) {
-                    //прописать выполнение и перемещение в архив
-                    Log.d(TAG, "onMenuItemClick: done");
+                    //выполнение и перемещение в архив
+                    sPref = getSharedPreferences("vk", MODE_PRIVATE);
+                    String userId = sPref.getString("user_id", "");
+                    String accessToken = sPref.getString("access_token", "");
+                    Call<ResponseBody> call = GoalsBuilder.getApi().moveToArchive(userId, goals.get(position).gettId(), accessToken);
+                    final int id = position;
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            // уведомляем, что данные изменились
+                            mAdapter.notifyDataSetChanged();
+                            goals.remove(id);
+                            Log.d("test", "moving to archive success");
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Log.d("test", "moving to archive failure");
+                        }
+                    });
                 }
                 return false;
             }

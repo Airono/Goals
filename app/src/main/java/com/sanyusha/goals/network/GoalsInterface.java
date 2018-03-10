@@ -35,5 +35,17 @@ public interface GoalsInterface {
                         @Query("token") String token
                         );
 
+    @PUT("/target/archive")
+    Call<ResponseBody> moveToArchive(@Query("uId") String uId,
+                                    @Query("tId") String tId,
+                                    @Query("token") String token
+    );
+
+    @PUT("/archive/target")
+    Call<ResponseBody> moveFromArchive(@Query("uId") String uId,
+                                     @Query("tId") String tId,
+                                     @Query("token") String token
+    );
+
 
 }
