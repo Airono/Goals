@@ -17,8 +17,10 @@ import retrofit2.http.Query;
  */
 
 public interface GoalsInterface {
+
     @GET("/targets")
-    Call<ArrayList<Goal>> getTargets(@Query("uId") String uId, @Query("token") String token);
+    Call<ArrayList<Goal>> getTargets(@Query("uId") String uId,
+                                     @Query("token") String token);
 
     @POST("/target/new")
     Call<ResponseBody> postTargets(@Query("uId") String id,
@@ -27,25 +29,31 @@ public interface GoalsInterface {
                                    @Query("description") String description,
                                    @Query("type") int type,
                                    @Query("date") long date
-                                       );
+    );
 
     @DELETE("/target")
     Call<ResponseBody> deleteTarget(@Query("uId") String uId,
-                        @Query("tId") String tId,
-                        @Query("token") String token
-                        );
-
-    @PUT("/target/archive")
-    Call<ResponseBody> moveToArchive(@Query("uId") String uId,
                                     @Query("tId") String tId,
                                     @Query("token") String token
     );
 
-    @PUT("/archive/target")
-    Call<ResponseBody> moveFromArchive(@Query("uId") String uId,
+    @PUT("/target/archive")
+    Call<ResponseBody> moveToArchive(@Query("uId") String uId,
                                      @Query("tId") String tId,
                                      @Query("token") String token
     );
 
+    @PUT("/archive/target")
+    Call<ResponseBody> moveFromArchive(@Query("uId") String uId,
+                                       @Query("tId") String tId,
+                                       @Query("token") String token
+    );
+
+
+    @GET("/archive")
+    Call<ArrayList<Goal>> getArchiveTargets(@Query("uId") String uId,
+                                            @Query("token") String token
+    );
 
 }
+
