@@ -1,8 +1,10 @@
 package com.sanyusha.goals.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +13,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -40,7 +43,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class GoalListActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
+public class GoalListActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = "test";
 
@@ -60,8 +63,8 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
             SwipeMenuItem doneItem = new SwipeMenuItem(
                     getApplicationContext());
             doneItem.setBackground(R.color.greenSwipe);
-            doneItem.setWidth(150);
-            doneItem.setTitle("Done");
+            doneItem.setWidth(convertDpToPixel(56, getApplicationContext()));
+//            doneItem.setTitle("Done");
             doneItem.setTitleSize(18);
             doneItem.setTitleColor(Color.WHITE);
             doneItem.setIcon(R.drawable.ic_ab_done);
@@ -69,6 +72,13 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
             menu.addMenuItem(doneItem);
         }
     };
+
+    public static int convertDpToPixel(int dp, Context context){
+        Resources resources = context.getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        int px = dp * (metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+        return px;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,7 +176,7 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
                     startActivity(intent);
                     return true;
                 case R.id.action_item3:
-                    intent = new Intent(getApplicationContext(), SettingActivity.class);
+                    intent = new Intent(getApplicationContext(), ArchiveActivity.class);
                     startActivity(intent);
                     return true;
             }

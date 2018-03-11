@@ -50,7 +50,7 @@ public interface GoalsInterface {
     );
 
 
-    @GET("/archive")
+    @GET("/targets/archive")
     Call<ArrayList<Goal>> getArchiveTargets(@Query("uId") String uId,
                                             @Query("token") String token
     );
