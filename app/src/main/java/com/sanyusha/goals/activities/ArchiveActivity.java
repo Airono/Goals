@@ -169,14 +169,16 @@ public class ArchiveActivity extends AppCompatActivity implements SwipeRefreshLa
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
             switch (item.getItemId()) {
-                case R.id.action_item3:
-                    return true;
-                case R.id.action_item2:
-                    Intent intent = new Intent(getApplicationContext(), NewGoalActivity.class);
+                case R.id.action_item1:
+                    Intent intent = new Intent(getApplicationContext(), GoalListActivity.class);
                     startActivity(intent);
                     return true;
-                case R.id.action_item1:
-                    intent = new Intent(getApplicationContext(), GoalListActivity.class);
+                case R.id.action_item2:
+                    intent = new Intent(getApplicationContext(), NewGoalActivity.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.action_item3:
+                    intent = new Intent(getApplicationContext(), SettingActivity.class);
                     startActivity(intent);
                     return true;
             }

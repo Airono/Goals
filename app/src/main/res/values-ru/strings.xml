@@ -18,4 +18,5 @@
     <string name="error">Ошибка</string>
     <string name="errorLoading">Ошибка загрузки файлов</string>
     <string name="time">Время истекло</string>
+    <string name="logout">Выйти из ВК</string>
 </resources>

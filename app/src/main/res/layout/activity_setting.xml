@@ -8,22 +8,42 @@
     android:layout_height="match_parent"
     tools:context="com.sanyusha.goals.activities.SettingActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/navigation"
+        android:orientation="vertical"
         android:animateLayoutChanges="true">
 
         <Button
             android:id="@+id/archive_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
+            android:layout_marginBottom="6dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="12dp"
-            android:text="@string/archive" />
-    </RelativeLayout>
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/archive"
+            android:textColor="@color/buttonTextColor"
+            android:textStyle="bold"
+            android:onClick="archiveButton"/>
+
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/vk_logout"
+            android:text="@string/logout"
+            android:textColor="@color/buttonTextColor"
+            android:textStyle="bold"
+            android:onClick="logoutButton"/>
+    </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

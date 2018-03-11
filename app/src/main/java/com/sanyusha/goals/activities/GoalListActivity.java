@@ -176,7 +176,7 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
                     startActivity(intent);
                     return true;
                 case R.id.action_item3:
-                    intent = new Intent(getApplicationContext(), ArchiveActivity.class);
+                    intent = new Intent(getApplicationContext(), SettingActivity.class);
                     startActivity(intent);
                     return true;
             }

@@ -14,4 +14,5 @@
     <color name="greenSwipe">#62ba04</color>
     <color name="progressBar">#1952ED</color>
     <color name="yellowArchive">#ffd900</color>
+    <color name="vk_logout">#d50007</color>
 </resources>

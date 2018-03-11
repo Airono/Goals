@@ -19,6 +19,7 @@
     <string name="error">Error</string>
     <string name="errorLoading">Error of loading</string>
     <string name="time">Time is up</string>
+    <string name="logout">Logout</string>
     <string-array name="spinner_list_item_array">
         <item>All</item>
         <item>Week</item>
