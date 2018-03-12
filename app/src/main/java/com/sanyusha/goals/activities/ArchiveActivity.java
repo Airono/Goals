@@ -64,8 +64,6 @@ public class ArchiveActivity extends AppCompatActivity implements SwipeRefreshLa
                     getApplicationContext());
             doneItem.setBackground(R.color.yellowArchive);
             doneItem.setWidth(convertDpToPixel(56, getApplicationContext()));
-//            doneItem.setTitle("Return");
-            doneItem.setTitleSize(18);
             doneItem.setTitleColor(Color.WHITE);
             doneItem.setIcon(R.drawable.return_button);
 
@@ -84,6 +82,7 @@ public class ArchiveActivity extends AppCompatActivity implements SwipeRefreshLa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
+        setTitle(R.string.archive);
 
         mAdapter = new GoalsAdapter(this, goals);
 
@@ -116,12 +115,12 @@ public class ArchiveActivity extends AppCompatActivity implements SwipeRefreshLa
                             // уведомляем, что данные изменились
                             mAdapter.notifyDataSetChanged();
                             goals.remove(id);
-                            Log.d("test", "moving from archive success");
+                            Log.d(TAG, "moving from archive success");
                         }
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Log.d("test", "moving from archive failure");
+                            Log.d(TAG, "moving from archive failure");
                         }
                     });
                 }
@@ -266,6 +265,6 @@ public class ArchiveActivity extends AppCompatActivity implements SwipeRefreshLa
                                       }
                                   },
                                     //time of loading
-                                    3000);
+                                    4000);
     }
 }

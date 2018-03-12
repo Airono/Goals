@@ -1,7 +1,5 @@
 package com.sanyusha.goals;
 
-import android.content.res.Resources;
-import android.util.Log;
 import android.widget.Filter;
 
 import com.sanyusha.goals.adapters.GoalsAdapter;

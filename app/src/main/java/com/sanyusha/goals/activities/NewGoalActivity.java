@@ -38,6 +38,7 @@ public class NewGoalActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_goal);
+        setTitle(R.string.newGoal);
 
         titleText = (EditText) findViewById(R.id.titleText);
         descriptionText = (EditText) findViewById(R.id.descriptionText);

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#04C2D4</color>
+    <color name="colorLighterThenPrimary">#a1f1f9</color>
     <color name="colorPrimaryDark">#2996A0</color>
     <color name="colorAccent">#017F8B</color>
     <color name="nav_item_state_list">#FFFFFF</color>
@@ -15,4 +16,5 @@
     <color name="progressBar">#1952ED</color>
     <color name="yellowArchive">#ffd900</color>
     <color name="vk_logout">#d50007</color>
+    <color name="black">#000000</color>
 </resources>

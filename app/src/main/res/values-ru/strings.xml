@@ -19,4 +19,8 @@
     <string name="errorLoading">Ошибка загрузки файлов</string>
     <string name="time">Время истекло</string>
     <string name="logout">Выйти из ВК</string>
+    <string name="login">Войти через ВКонтакте</string>
+    <string name="all">Все</string>
+    <string name="newGoal">Новая Цель</string>
+    <string name="goalList">Цели</string>
 </resources>

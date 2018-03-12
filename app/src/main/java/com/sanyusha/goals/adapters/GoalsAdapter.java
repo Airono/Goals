@@ -71,7 +71,6 @@ public class GoalsAdapter extends BaseAdapter implements Filterable {
 
         ((TextView) view.findViewById(R.id.title)).setText(p.getTitle());
         ((TextView) view.findViewById(R.id.description)).setText(p.getDescription());
-//        ((TextView) view.findViewById(R.id.date)).setText(R.string.time);
 
         long dateAchievement = p.getDate();
         switch (p.getType()) {
@@ -109,7 +108,7 @@ public class GoalsAdapter extends BaseAdapter implements Filterable {
                     break;
                 }
             case life:
-                ((TextView) view.findViewById(R.id.date)).setText("life");
+                ((TextView) view.findViewById(R.id.date)).setText(R.string.life);
                 break;
             default:
                 ((TextView) view.findViewById(R.id.date)).setText("unknown");

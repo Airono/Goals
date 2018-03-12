@@ -14,8 +14,6 @@ import com.vk.sdk.VKScope;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * Created by Alexandra on 27.01.2018.
  */

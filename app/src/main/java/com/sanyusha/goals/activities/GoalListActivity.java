@@ -64,8 +64,6 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
                     getApplicationContext());
             doneItem.setBackground(R.color.greenSwipe);
             doneItem.setWidth(convertDpToPixel(56, getApplicationContext()));
-//            doneItem.setTitle("Done");
-            doneItem.setTitleSize(18);
             doneItem.setTitleColor(Color.WHITE);
             doneItem.setIcon(R.drawable.ic_ab_done);
 
@@ -84,6 +82,7 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_list);
+        setTitle(R.string.goalList);
 
         mAdapter = new GoalsAdapter(this, goals);
 
@@ -116,12 +115,12 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
                             // уведомляем, что данные изменились
                             mAdapter.notifyDataSetChanged();
                             goals.remove(id);
-                            Log.d("test", "moving to archive success");
+                            Log.d(TAG, "moving to archive success");
                         }
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Log.d("test", "moving to archive failure");
+                            Log.d(TAG, "moving to archive failure");
                         }
                     });
                 }
@@ -208,12 +207,12 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
                     // уведомляем, что данные изменились
                     mAdapter.notifyDataSetChanged();
                     goals.remove(acmi.position);
-                    Log.d("test", "deleting success");
+                    Log.d(TAG, "deleting success");
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.d("test", "deleting failure");
+                    Log.d(TAG, "deleting failure");
                 }
             });
             return true;
@@ -233,7 +232,7 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
             @Override
             public void onResponse(Call<ArrayList<Goal>> call, Response<ArrayList<Goal>> response) {
                 if (response.isSuccessful()) {
-                    Log.d("test", "success");
+                    Log.d(TAG, "success");
                     goals = response.body();
                     progressBar.setVisibility(ProgressBar.INVISIBLE);
                     lstTask.setVisibility(SwipeMenuListView.VISIBLE);
@@ -245,8 +244,8 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
             }
             @Override
             public void onFailure(Call<ArrayList<Goal>> call, Throwable throwable) {
-                Log.d("test", "failure");
-                Log.d("test", call.request().url().toString());
+                Log.d(TAG, "failure");
+                Log.d(TAG, call.request().url().toString());
                 lstTask.setVisibility(SwipeMenuListView.INVISIBLE);
                 progressBar.setVisibility(ProgressBar.INVISIBLE);
                 textView.setVisibility(TextView.VISIBLE);
@@ -256,7 +255,7 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
 
     @Override
     public void onRefresh() {
-        Log.d("test", "refresh");
+        Log.d(TAG, "refresh");
         new Handler().postDelayed(new Runnable() {
             @Override public void run() {
                 loadTaskList();
