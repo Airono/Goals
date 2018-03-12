@@ -263,6 +263,6 @@ public class GoalListActivity extends AppCompatActivity implements SwipeRefreshL
             }
         },
                 //time of loading
-                3000);
+                4000);
     }
 }
