@@ -20,7 +20,7 @@
     <string name="errorLoading">Error of loading</string>
     <string name="time">Time is up</string>
     <string name="logout">Log out</string>
-    <string name="login">Log in for VK</string>
+    <string name="login">Log in with VK</string>
     <string name="all">All</string>
     <string name="newGoal">New Goal</string>
     <string-array name="spinner_list_item_array">
